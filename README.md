@@ -36,13 +36,38 @@ works to increase the redundancy of data within the system in a distributed
 manner, and content may be transferred to a particular user's computer without
 the user of the software's knowledge or consent. 
 
-This makes it difficult to prove in a court of law that a particular user was
-deliberately trying to access any specific piece of content on the system.
-Unless you can prove they have the original hash of any file you cannot establish
-they even have access to the contents, and logs of specific IP addresses
-transferring the data prove nothing as the software by design may transfer
-parts of files between peers at any time.
+This makes it difficult to prove that a particular user was deliberately trying
+to access any specific piece of content on the system. Unless you can prove they
+have the original hash of any file you cannot establish they even have access to
+the contents, only to the ciphertext, and therefore logs of specific IP
+addresses transferring encrypted data prove nothing as the software by design may
+transfer parts of files between peers at any time. You cannot prove the user
+elected to engage in the transfer, and even if you could, unless you can prove
+the encryption key needed to access a particular piece of content is present on
+a particular user's computer (and that a particular person chose to obtain that
+encryption key) you cannot prove they actually voluntarily elected to acquire
+a particular piece of content.
 
-Cryptosphere Objects
---------------------
+Intent
+------
 
+This software was strongly inspired by the events surrounding Wikileaks and
+the diplomatic cables that Bradley Manning disclosed to the public. In this
+case a whistleblower had information that needed to be disclosed to the public
+which due to its sensitive nature few were willing to touch.
+
+Bradley Manning chose to disclose this information through a centralized
+source, Wikileaks. This source was in turn a central point of failure when it
+came to the availability of the information. While Wikileaks eventually
+managed to distribute the information across multiple web servers run by
+volunteers, it still acted as a central clearinghouse for the information.
+
+The Cryptosphere aims to remove any such centralization. Sensitive information
+can be published semi-anonymously and distributed in encrypted form. This
+means it can be disseminated to trusted entities (e.g. media) prior to
+disclosure to the general public.
+
+Beyond its cryptographic properties and usefulness as a whistleblowing
+platform, the Cryptosphere has all the properties needed to act as a general
+distributed peer-to-peer data archive, an oracle of freely available works
+of all kinds that can be distributed in a digital format.
