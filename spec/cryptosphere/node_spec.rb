@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe Cryptosphere::NodeBuilder do
+describe Cryptosphere::Node do
   it "creates nodes from data" do
-    builder = Cryptosphere::NodeBuilder.new
+    builder = Cryptosphere::Node::Builder.new
     builder << "foobar"
     node = builder.finish
     node.decrypt.should == "foobar"

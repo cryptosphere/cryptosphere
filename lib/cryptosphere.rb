@@ -1,7 +1,9 @@
-require 'cryptosphere/version'
+require 'digest/sha2'
+require 'openssl'
 
+require 'cryptosphere/version'
 require 'cryptosphere/node'
-require 'cryptosphere/node_builder'
+require 'cryptosphere/tree'
 
 module Cryptosphere
   # The Cryptosphere shares an initialization vector for all nodes
