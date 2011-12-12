@@ -12,6 +12,45 @@ MNet, Freenet, and Tahoe-LAFS. These systems serve as inspiration for the
 Cryptosphere's design. The Cryptosphere is also heavily influenced by Git, the
 distributed version control system.
 
+What makes the Cryptosphere different?
+--------------------------------------
+
+Many have sought to build an openly federated data storage system. Such a
+system was the basis for MojoNation, a startup which let you sell your
+storage and bandwidth for a virtual currency called Mojo. Unfortunately
+MojoNation never took off.
+
+Freenet is the most similar system to the Cryptosphere today. Freenet
+provides strong guarantees on anonymity and seeks to provide a low barrier
+of entry for publishing content on the system.
+
+The Cryptosphere strikes a balance between these two systems. The specific
+origin of particular pieces of content on the system is obscured, providing
+anonymity as to the source of the data. The Cryptosphere does nothing to mask
+what peers are doing from other peers they're directly working with (e.g.
+storing or exchanging data), aside from using strong crypto to obscure all
+P2P communications. In this regard the anonymity guarantees of the
+Cryptosphere are no different from a system like BitTorrent, aside from the
+plausible deniability defense that comes from the fact all content is
+encrpyted and peers automatically provide storage service to other peers.
+
+Instead, the Cryptosphere favors system robustness over guarantees on
+anonymity. Participants in the system maintain a history of their activities
+in the form of a long-chain certificate. You can think of this being somewhat
+like the BitCoin block chain, where the longest version always wins, and its
+integrity can be cryptographically verified. Every peer maintains its own long
+chain certificate of all its activities, including services requested and
+services completed.
+
+Rather than verifying the integrity of a long chain based on hashes, the
+Cryptosphere uses public key cryptography. Peers requesting services sign off
+on both the request and delivery of a service (e.g. storing and serving a
+particular chunk of a file). While in isolation the data points contained
+within a particular long chain certificate are meaningless, peers can
+collect several of these certificates and build a database of other peers
+in the system, using tools like collaborative filtering to make intelligent
+decisions about which other peers are worth interacting with.
+
 How the Cryptosphere stores data
 --------------------------------
 
