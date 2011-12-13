@@ -51,6 +51,23 @@ collect several of these certificates and build a database of other peers
 in the system, using tools like collaborative filtering to make intelligent
 decisions about which other peers are worth interacting with.
 
+Greed, Altruism, and Reciprocity
+--------------------------------
+
+The Cryptosphere's trust model works to limit greed. Storage space and
+bandwidth are viewed as fungible commodities which come at a cost to the
+provider. Greedy peers want to consume these resources without contributing
+back to the system, ignoring the cost of the resources to those who provide
+it. There are two ways that greedy peers can abuse the system:
+
+1. Storage: greedy peers will seek to fill the system with objects only they
+   are interested in
+
+2. Bandwidth: greedy peers will consume content from the system without
+   contributing bandwidth in return
+
+
+
 How the Cryptosphere stores data
 --------------------------------
 
