@@ -54,8 +54,13 @@ decisions about which other peers are worth interacting with.
 How the Cryptosphere stores data
 --------------------------------
 
-As you might expect from the name, all data within the Cryptosphere is
-encrypted, using a technique called convergent encryption. Convergent
+As you might expect from the name, everything within the Cryptosphere is 
+encrypted using strong cryptography, in the form of public key ciphers,
+block ciphers, or hash functions. This includes every single packet used
+throughout the system (including the handshake!), and all data stored
+within the system.
+
+Data is stored using a technique called convergent encryption. Convergent
 encryption means that when a file is encrypted, you will always get the same
 cryptographic result, allowing files to be deduplicated globally. This
 approach works by calculating a hash (specifically a SHA256 hash) of a file's
