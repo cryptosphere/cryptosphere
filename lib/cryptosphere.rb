@@ -4,6 +4,8 @@ require 'openssl'
 require 'cryptosphere/version'
 require 'cryptosphere/node'
 require 'cryptosphere/tree'
+require 'cryptosphere/data/node'
+require 'cryptosphere/data/tree'
 
 module Cryptosphere
   # The Cryptosphere shares an initialization vector for all nodes
