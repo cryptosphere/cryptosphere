@@ -42,8 +42,10 @@ module Cryptosphere
       
       cipher = Cryptosphere.block_cipher
       cipher.decrypt
-      cipher.key = [@key].pack("H*")
-      cipher.iv = CONVERGENCE_NONSECRET
+      
+      binary_key = [@key].pack("H*")
+      cipher.key = binary_key
+      cipher.iv  = Digest::SHA256.digest(binary_key)
       
       output = ''
       
@@ -74,8 +76,10 @@ module Cryptosphere
 
         block_cipher = Cryptosphere.block_cipher
         block_cipher.encrypt
-        block_cipher.key = @hash_cipher.digest
-        block_cipher.iv  = CONVERGENCE_NONSECRET
+        
+        binary_key = @hash_cipher.digest
+        block_cipher.key = binary_key
+        block_cipher.iv  = Digest::SHA256.digest(binary_key)
 
         @file.rewind
         output = Tempfile.new 'cryptosphere'
