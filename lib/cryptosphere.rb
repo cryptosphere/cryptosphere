@@ -2,8 +2,8 @@ require 'digest/sha2'
 require 'openssl'
 
 require 'cryptosphere/version'
-require 'cryptosphere/node'
-require 'cryptosphere/tree'
+require 'cryptosphere/cli'
+
 require 'cryptosphere/data/node'
 require 'cryptosphere/data/tree'
 

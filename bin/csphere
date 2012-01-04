@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require 'cryptosphere'
+
+Cryptosphere::CLI.start(ARGV)

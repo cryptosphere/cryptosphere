@@ -16,6 +16,7 @@ Gem::Specification.new do |gem|
   gem.version       = Cryptosphere::VERSION
   
   gem.add_dependency "celluloid"
+  gem.add_dependency "thor"
 
   gem.add_development_dependency "rake"
   gem.add_development_dependency "rspec", ">= 2.7.0"
