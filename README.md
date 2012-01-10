@@ -24,15 +24,22 @@ Freenet is the most similar system to the Cryptosphere today. Freenet
 provides strong guarantees on anonymity and seeks to provide a low barrier
 of entry for publishing content on the system.
 
-The Cryptosphere strikes a balance between these two systems. The specific
-origin of particular pieces of content on the system is obscured, providing
-anonymity as to the source of the data. The Cryptosphere does nothing to mask
-what peers are doing from other peers they're directly working with (e.g.
-storing or exchanging data), aside from using strong crypto to obscure all
-P2P communications. In this regard the anonymity guarantees of the
-Cryptosphere are no different from a system like BitTorrent, aside from the
-plausible deniability defense that comes from the fact all content is
-encrpyted and peers automatically provide storage service to other peers.
+The Cryptosphere strikes a balance between these two systems. Instead of using
+any sort of virtual currency like Mojo, peers barter with each other in
+exchanges which are completely localized to the peers involved. However, while
+every peer in a cryptographic exchange keeps extensive, cryptographically
+signed records of what was exchanged (or what they attempted to exchange),
+the specifics of what data was exchanged are not stored in the records, nor
+can they be derived from decrypting the content.
+
+However, in a direct peer-to-peer exchange the Cryptosphere does nothing to
+mask the transactions a particular is performing, as opposed to systems like
+Freenet and Tor which make an effort to obscure which host you're actually
+talking to by routing them through a chain of proxies. In this regard the
+anonymity guarantees of the Cryptosphere are no different from a system like
+BitTorrent, aside from the plausible deniability defense that comes from the
+fact all content is encrpyted and peers automatically provide storage service
+to other peers.
 
 Instead, the Cryptosphere favors system robustness over guarantees on
 anonymity. Participants in the system maintain a history of their activities
@@ -66,7 +73,29 @@ it. There are two ways that greedy peers can abuse the system:
 2. Bandwidth: greedy peers will consume content from the system without
    contributing bandwidth in return
 
+The Cryptosphere prevents greed by encouraging reciprocity through a sort of
+bartering system: storage is traded for storage and bandwidth, and bandwidth
+is traded for bandwidth. Peers select the best trading partners based on their
+own self-interest and all available data, then engage in trades. Trades with
+newcomers are initially considered risky, but have the potential to grow into
+a potentially fruitful relationship.
 
+Storage is negotiated in units called "creds" which equate to storing a single
+byte for one day (86400 seconds). At the end of the day peers can determine if
+the exchange was mutually beneficial and decide to renegotiate it for another
+day. Peers will avoid renegotiating with other peers that did not faithfully
+provide a service. The goal is for peers to eventually form long-term, ongoing
+relationships of storing particular pieces of data to ensure it remains highly
+available.
+
+By default the Cryptosphere software is tuned to be a somewhat altruistic risk
+taker in the interests of making the Cryptosphere as a whole a more useful and
+robust system. In the future it should be possible to tune the Cryptosphere
+to your needs as an individual peer, being as altruistic or stingy as you like.
+Altruistic peers will improve system robustness at the expense of being an
+easy target for greedy peers. Stingy peers will be difficult to trade with and
+will favor established members of the community with a good reputation among
+a large body of peers that the stingy peer knows directly.
 
 How the Cryptosphere stores data
 --------------------------------
