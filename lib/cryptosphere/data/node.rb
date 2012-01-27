@@ -79,6 +79,10 @@ module Cryptosphere
         
         binary_key = @hash_cipher.digest
         block_cipher.key = binary_key
+        
+        # TODO: Deriving the IV from the key is lame, even if it's a secure
+        # hash. A different scheme should be used.
+        # Discussion here: https://gist.github.com/1597215
         block_cipher.iv  = Digest::SHA256.digest(binary_key)
 
         @file.rewind
