@@ -1,5 +1,6 @@
 The Cryptosphere
 ================
+[![Build Status](http://travis-ci.org/tarcieri/cryptosphere.png)](http://travis-ci.org/tarcieri/cryptosphere)
 
 The Cryptosphere is a global peer-to-peer cryptosystem for publishing and
 securely distributing content anonymously with no central point of failure.
