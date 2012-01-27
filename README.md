@@ -142,7 +142,7 @@ Suggested Reading
 -----------------
 
 The Cryptosphere is based on a number of previous, similar P2P cryptosystems.
-Here are the whitepapers for some of the software's influences:
+Here are the papers for some of the software's influences:
 
 * [Tahoe - The Least-Authority Filesystem (Tahoe-LAFS)](https://tahoe-lafs.org/~zooko/lafs.pdf)
 * [A Distributed Decentralized Information Storage and Retrieval System (Freenet)](http://freenetproject.org/papers/ddisrs.pdf)
