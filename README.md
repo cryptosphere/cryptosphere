@@ -2,6 +2,10 @@ The Cryptosphere
 ================
 [![Build Status](http://travis-ci.org/tarcieri/cryptosphere.png)](http://travis-ci.org/tarcieri/cryptosphere)
 
+> "I want people to see the truth... regardless of who they are... because
+> without information, you cannot make informed decisions as a public"  
+> _-- Bradley Manning_
+
 The Cryptosphere is a global peer-to-peer cryptosystem for publishing and
 securely distributing content anonymously with no central point of failure.
 The system is openly federated and anyone can join. To ensure quality service
