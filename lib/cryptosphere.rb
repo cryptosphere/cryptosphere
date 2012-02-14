@@ -6,8 +6,8 @@ require 'cryptosphere/version'
 require 'cryptosphere/cli'
 require 'cryptosphere/identity'
 
-require 'cryptosphere/data/node'
-require 'cryptosphere/data/tree'
+require 'cryptosphere/blobs/blob'
+require 'cryptosphere/blobs/tree'
 
 module Cryptosphere
   # 256-bit hash cipher

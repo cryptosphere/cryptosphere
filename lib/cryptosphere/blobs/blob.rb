@@ -2,9 +2,9 @@ require 'tempfile'
 require 'fileutils'
 
 module Cryptosphere
-  class Node
+  class Blob
     # Prefix added to the beginning of every Cryptosphere node
-    PREFIX = "csphnode::"
+    PREFIX = "blob::"
 
     attr_reader :id, :key, :path
 
@@ -29,7 +29,7 @@ module Cryptosphere
 
       # Create a node from a given object
       def [](obj)
-        builder = Cryptosphere::Node::Builder.new
+        builder = Builder.new
         builder << obj
         builder.finish
       end
@@ -105,9 +105,9 @@ module Cryptosphere
           output.close
 
           node_id = hash_cipher.hexdigest
-          FileUtils.mv output.path, File.join(Node.path, node_id)
+          FileUtils.mv output.path, File.join(Blob.path, node_id)
 
-          Node.new(node_id, key + iv)
+          Blob.new(node_id, key + iv)
         rescue Exception
           output.close rescue nil
           output.unlink rescue nil
