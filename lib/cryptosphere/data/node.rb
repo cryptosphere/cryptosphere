@@ -3,27 +3,30 @@ require 'fileutils'
 
 module Cryptosphere
   class Node
+    # Prefix added to the beginning of every Cryptosphere node
+    PREFIX = "csphnode::"
+
     attr_reader :id, :key, :path
-    
+
     class << self
       attr_reader :path
-      
+
       # Configure the Cryptosphere Node store
       def setup(options = {})
         unless options[:root]
           raise ArgumentError, "no :root path given"
         end
-        
+
         unless File.directory? options[:root]
           raise ArgumentError, "no such directory: #{options[:root]}"
         end
-        
+
         @path = File.expand_path("nodes", options[:root])
         FileUtils.mkdir @path unless File.directory? @path
-        
+
         nil
       end
-      
+
       # Create a node from a given object
       def [](obj)
         builder = Cryptosphere::Node::Builder.new
@@ -31,37 +34,37 @@ module Cryptosphere
         builder.finish
       end
     end
-    
+
     def initialize(id, key)
       @id, @key = id, key
       @path = File.join(self.class.path, @id)
     end
-    
+
     def decrypt
       raise "can't decrypt node without key" unless @key
-      
+
       cipher = Cryptosphere.block_cipher
       cipher.decrypt
-      
-      binary_key = [@key].pack("H*")
-      cipher.key = binary_key
-      cipher.iv  = Digest::SHA256.digest(binary_key)
-      
+      cipher.key = @key[0...32]
+      cipher.iv  = @key[32...64]
+
       output = ''
-      
+
       File.open(@path, 'r') do |file|
         while data = file.read(4096)
           output << cipher.update(data)
         end
       end
-        
+
       output << cipher.final
     end
-    
+
     # Encrypt a node and insert it into the local store
     class Builder
       def initialize
         @hash_cipher = Cryptosphere.hash_cipher
+        @hash_cipher << PREFIX
+
         @file = Tempfile.new 'cryptosphere'
       end
 
@@ -71,19 +74,19 @@ module Cryptosphere
       end
       alias_method :<<, :write
 
+      def derive_key(hash)
+        salt, secret = hash[0...8], hash[8...32]
+        data = Cryptosphere.kdf(secret, salt)
+        key, iv = data[0...32], data[32...64]
+        return key, iv
+      end
+
       def finish
-        secret_key = @hash_cipher.hexdigest
+        key, iv = derive_key @hash_cipher.digest
 
         block_cipher = Cryptosphere.block_cipher
         block_cipher.encrypt
-        
-        binary_key = @hash_cipher.digest
-        block_cipher.key = binary_key
-        
-        # TODO: Deriving the IV from the key is lame, even if it's a secure
-        # hash. A different scheme should be used.
-        # Discussion here: https://gist.github.com/1597215
-        block_cipher.iv  = Digest::SHA256.digest(binary_key)
+        block_cipher.key, block_cipher.iv = key, iv
 
         @file.rewind
         output = Tempfile.new 'cryptosphere'
@@ -104,7 +107,7 @@ module Cryptosphere
           node_id = hash_cipher.hexdigest
           FileUtils.mv output.path, File.join(Node.path, node_id)
 
-          Node.new(node_id, secret_key)
+          Node.new(node_id, key + iv)
         rescue Exception
           output.close rescue nil
           output.unlink rescue nil
