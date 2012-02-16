@@ -75,7 +75,7 @@ module Cryptosphere
       alias_method :<<, :write
 
       def derive_key(hash)
-        salt, secret = hash[0...8], hash[8...32]
+        salt, secret = hash[0...16], hash[16...32]
         data = Cryptosphere.kdf(secret, salt)
         key, iv = data[0...32], data[32...64]
         return key, iv
