@@ -145,12 +145,22 @@ a particular piece of content.
 Suggested Reading
 -----------------
 
-The Cryptosphere is based on a number of previous, similar P2P cryptosystems.
-Here are the papers for some of the software's influences:
-
 * [Tahoe - The Least-Authority Filesystem (Tahoe-LAFS)](https://tahoe-lafs.org/~zooko/lafs.pdf)
 * [A Distributed Decentralized Information Storage and Retrieval System (Freenet)](http://freenetproject.org/papers/ddisrs.pdf)
 * [Efficient Sharing of Encrypted Data (GNUnet)](http://grothoff.org/christian/esed.pdf)
 * [Samsara: Honor Among Thieves in Peer-to-Peer Storage](http://www.eecs.harvard.edu/~mema/courses/cs264/papers/samsara-sosp2003.pdf)
 * [A Sybilproof Indirect Reciprocity Mechanism for Peer-to-Peer Networks](http://discovery.ucl.ac.uk/14962/1/14962.pdf)
 * [Incentive-driven QoS in peer-to-peer overlays](http://discovery.ucl.ac.uk/19490/1/19490.pdf)
+
+Contributing to the Cryptosphere
+--------------------------------
+
+* Fork this repository on github
+* Make your changes and send me a pull request
+* If I like them I'll merge them
+
+License
+-------
+
+Copyright (c) 2012 Tony Arcieri. Distributed under the MIT License. See
+LICENSE.txt for further details.
