@@ -74,7 +74,20 @@ module Cryptosphere
       end
       alias_method :<<, :write
 
+      # Stretch SHA256 hashes into a 256-bit key and 256-bit IV with PBKDF2
+      # TODO: The cool kids seem to be using scrypt for this, should we?
       def derive_key(hash)
+        # Using a salt derived from a hash like this defeats the purpose of
+        # a salt in many ways, but convergent encryption gives us no choice
+        # This does open the Cryptosphere up to some potential attacks, namely
+        # the "confirmation of data" attack and "learn the remaining data"
+        # attack. The Cryptosphere punts on both of these problems because any
+        # attempts to solve them cannot be applied to a global convergent
+        # encrypted datastore (although I'd love for someone to prove me wrong!)
+        #
+        # A good read on the matter is Tahoe LAFS's writeup on it:
+        # https://tahoe-lafs.org/hacktahoelafs/drew_perttula.html
+        #
         salt, secret = hash[0...16], hash[16...32]
         data = Cryptosphere.kdf(secret, salt)
         key, iv = data[0...32], data[32...64]
