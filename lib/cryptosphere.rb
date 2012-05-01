@@ -1,17 +1,17 @@
 require 'digest/sha2'
 require 'openssl'
 require 'pbkdf2'
-
 require 'cryptosphere/version'
-require 'cryptosphere/cli'
-require 'cryptosphere/identity'
 
 require 'cryptosphere/blobs/blob'
 require 'cryptosphere/blobs/tree'
+require 'cryptosphere/bucket'
+require 'cryptosphere/cli'
+require 'cryptosphere/identity'
 
 module Cryptosphere
-  # 256-bit hash cipher
-  def self.hash_cipher
+  # 256-bit hash function
+  def self.hash_function
     Digest::SHA256.new
   end
 

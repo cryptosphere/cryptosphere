@@ -62,14 +62,14 @@ module Cryptosphere
     # Encrypt a node and insert it into the local store
     class Builder
       def initialize
-        @hash_cipher = Cryptosphere.hash_cipher
-        @hash_cipher << PREFIX
+        @hash_function = Cryptosphere.hash_function
+        @hash_function << PREFIX
 
         @file = Tempfile.new 'cryptosphere'
       end
 
       def write(data)
-        @hash_cipher << data
+        @hash_function << data
         @file << data
       end
       alias_method :<<, :write
@@ -95,7 +95,7 @@ module Cryptosphere
       end
 
       def finish
-        key, iv = derive_key @hash_cipher.digest
+        key, iv = derive_key @hash_function.digest
 
         block_cipher = Cryptosphere.block_cipher
         block_cipher.encrypt
@@ -105,19 +105,19 @@ module Cryptosphere
         output = Tempfile.new 'cryptosphere'
 
         begin
-          hash_cipher = Cryptosphere.hash_cipher
+          hash_function = Cryptosphere.hash_function
           while plaintext = @file.read(4096)
             ciphertext = block_cipher.update(plaintext)
             output << ciphertext
-            hash_cipher << ciphertext
+            hash_function << ciphertext
           end
 
           ciphertext = block_cipher.final
           output << ciphertext
-          hash_cipher << ciphertext
+          hash_function << ciphertext
           output.close
 
-          node_id = hash_cipher.hexdigest
+          node_id = hash_function.hexdigest
           FileUtils.mv output.path, File.join(Blob.path, node_id)
 
           Blob.new(node_id, key + iv)
