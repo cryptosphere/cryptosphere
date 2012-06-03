@@ -31,6 +31,7 @@ module Cryptosphere
   end
 
   # 4096-bit pubkey cipher
+  # TODO: investigate ECDSA as an alternative
   def self.pubkey_cipher
     OpenSSL::PKey::RSA
   end
