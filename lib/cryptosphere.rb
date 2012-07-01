@@ -1,6 +1,6 @@
 require 'digest/sha2'
 require 'openssl'
-require 'pbkdf2'
+require 'hkdf'
 require 'cryptosphere/version'
 
 require 'cryptosphere/blobs/blob'
@@ -15,14 +15,9 @@ module Cryptosphere
     Digest::SHA256.new
   end
 
-  # 512-bit KDF (256-bit key, 256-bit iv)
-  def self.kdf(secret, salt, iterations = 20000)
-    PBKDF2.new(
-      :password   => secret,
-      :salt       => salt,
-      :iterations => iterations,
-      :key_length => 64
-    ).bin_string
+  # Key derivation function
+  def self.kdf(secret, size = 32)
+    HKDF.new(secret).next_bytes(size)
   end
 
   # 256-bit block cipher
