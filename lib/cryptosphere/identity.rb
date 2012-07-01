@@ -5,8 +5,8 @@ module Cryptosphere
     end
     
     def initialize(privkey)
-      @privkey = Cryptosphere.pubkey_cipher.new privkey
-      @id = Cryptosphere.hash_function.digest(@privkey.public_key.to_der)
+      @privkey = Cryptosphere.pubkey_cipher.new(privkey)
+      @id      = Cryptosphere.kdf(@privkey.public_key.to_der)
     end
     
     def id
