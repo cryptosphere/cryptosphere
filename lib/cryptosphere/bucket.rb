@@ -13,7 +13,7 @@ module Cryptosphere
       @read_key    = read_key
       @verify_key  = Cryptosphere.pubkey_cipher.new(verify_key)
 
-      @id = Cryptosphere.hash_function.hexdigest(verify_key)
+      @id = Cryptosphere.kdf(verify_key).unpack("H*").first
     end
   end
 end
