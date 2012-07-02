@@ -5,8 +5,8 @@ require 'cryptosphere/version'
 
 require 'cryptosphere/blobs/blob'
 require 'cryptosphere/blobs/tree'
-require 'cryptosphere/bucket'
 require 'cryptosphere/cli'
+require 'cryptosphere/head'
 require 'cryptosphere/identity'
 
 module Cryptosphere
@@ -30,4 +30,13 @@ module Cryptosphere
   def self.pubkey_cipher
     OpenSSL::PKey::RSA
   end
+
+  # Request to do something we're incapable of
+  class CapabilityError < StandardError; end
+
+  # Signature doesn't match (potential data tampering)
+  class InvalidSignatureError < StandardError; end
+
+  # Implausible timestamps (i.e. ones from the future)
+  class InvalidTimestampError < StandardError; end
 end
