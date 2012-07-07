@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe Cryptosphere::Head do
-  let(:verify_key) { example_private_key.public_key.to_der }
   let(:read_key)   { "X" * 32 }
-  let(:write_key)  { example_private_key  }
+  let(:write_key)  { example_private_key }
+  let(:verify_key) { example_public_key }
 
   let(:reader) { Cryptosphere::Head.new(verify_key, read_key) }
   let(:writer) { Cryptosphere::Head.new(verify_key, read_key, write_key) }
@@ -12,7 +12,10 @@ describe Cryptosphere::Head do
 
   it "moves heads" do
     writer.move(example_location)
-    reader.update writer.to_signed_message
+    message = writer.to_signed_message
+    message.length.should be < MAX_DATAGRAM_LENGTH
+
+    reader.update message
     reader.location.should == example_location
   end
 end

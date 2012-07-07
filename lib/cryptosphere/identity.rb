@@ -1,18 +1,22 @@
 module Cryptosphere
   class Identity
+    attr_reader :id, :private_key
+
     def self.generate
-      new Cryptosphere.pubkey_cipher.generate(4096).to_der
+      new Cryptosphere.pubkey_cipher.generate(Cryptosphere::PUBKEY_SIZE).to_der
     end
-    
+
     def initialize(privkey)
-      @privkey = Cryptosphere.pubkey_cipher.new(privkey)
-      @id      = Cryptosphere.kdf(@privkey.public_key.to_der)
+      @private_key = Cryptosphere.pubkey_cipher.new(privkey)
+
+      binary_id = Cryptosphere.kdf(@private_key.public_key.to_der)
+      @id = binary_id.unpack('H*').first.scan(/.{4}/).join(":")
     end
-    
-    def id
-      @id.unpack('H*').first.scan(/.{4}/).join(":")
+
+    def public_key
+      @private_key.public_key
     end
-    
+
     def to_s
       "#<Cryptosphere::Identity:#{id}>"
     end

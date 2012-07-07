@@ -3,7 +3,7 @@ module Cryptosphere
     attr_reader :signing_key, :read_key, :verify_key, :location, :timestamp
 
     def self.generate
-      signing_key = Cryptosphere.pubkey_cipher.generate(4096)
+      signing_key = Cryptosphere.pubkey_cipher.generate(PUBKEY_SIZE)
       verify_key  = signing_key.public_key
       read_key    = OpenSSL::Random.random_bytes(32)
 
