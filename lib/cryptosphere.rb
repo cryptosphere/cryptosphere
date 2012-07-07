@@ -1,7 +1,8 @@
 require 'digest/sha2'
 require 'openssl'
-require 'hkdf'
 require 'cryptosphere/version'
+
+require 'cryptosphere/crypto/kdf'
 
 require 'cryptosphere/blobs/blob'
 require 'cryptosphere/blobs/tree'
@@ -25,11 +26,6 @@ module Cryptosphere
   # 256-bit hash function
   def self.hash_function
     Digest::SHA256.new
-  end
-
-  # Key derivation function
-  def self.kdf(secret, size = 32)
-    HKDF.new(secret).next_bytes(size)
   end
 
   # Signature function

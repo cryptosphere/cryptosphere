@@ -75,7 +75,7 @@ module Cryptosphere
       alias_method :<<, :write
 
       def finish
-        keys = Cryptosphere.kdf(@hash_function.digest, 64)
+        keys = Cryptosphere.kdf(@hash_function.digest, size: 64)
         key, iv = keys[0...32], keys[32...64]
 
         block_cipher = Cryptosphere.block_cipher
