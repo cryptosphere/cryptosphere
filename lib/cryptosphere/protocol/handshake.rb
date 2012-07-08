@@ -7,6 +7,7 @@ module Cryptosphere
 
       def to_signed_message
         # FIXME: We need a different algorithm for this to be possible
+        # Sure would be nice to have some Curve25519 here
         # message = @recipient.public_key.public_encrypt @sender.public_key
         message = @sender.public_key
 
