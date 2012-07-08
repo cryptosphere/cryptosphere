@@ -6,7 +6,7 @@ describe Cryptosphere::Head do
   let(:verify_key) { example_public_key }
 
   let(:reader) { Cryptosphere::Head.new(verify_key, read_key) }
-  let(:writer) { Cryptosphere::Head.new(verify_key, read_key, write_key) }
+  let(:writer) { Cryptosphere::Head.new(write_key,  read_key) }
 
   let(:example_location) { "221B Baker Street" }
 

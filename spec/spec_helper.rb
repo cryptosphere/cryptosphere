@@ -9,27 +9,30 @@ FileUtils.rm_rf File.join(Root, "*")
 Cryptosphere::Blob.setup :root => Root
 
 module KeyExamples
-  def load_fixture_key(name = 'alice.key')
-    path = File.expand_path("../fixtures/#{name}", __FILE__)
-    Cryptosphere.pubkey_cipher.new(File.read(path))
+  def load_fixture_private_key(name = 'alice.key')
+    File.read File.expand_path("../fixtures/#{name}", __FILE__)
+  end
+
+  def load_fixture_public_key(name = 'alice.key')
+    Cryptosphere::AsymmetricCipher.new(load_fixture_private_key(name)).public_key
   end
 
   def alice_private_key
-    @alice_private_key ||= load_fixture_key('alice.key').to_der
+    @alice_private_key ||= load_fixture_private_key('alice.key')
   end
   alias_method :example_private_key, :alice_private_key
 
   def alice_public_key
-    @alice_public_key  ||= load_fixture_key('alice.key').public_key.to_der
+    @alice_public_key ||= load_fixture_public_key('alice.key')
   end
   alias_method :example_public_key, :alice_public_key
 
   def bob_private_key
-    @bob_private_key ||= load_fixture_key('bob.key').to_der
+    @bob_private_key ||= load_fixture_private_key('bob.key')
   end
 
   def bob_public_key
-    @bob_public_key  ||= load_fixture_key('bob.key').public_key.to_der
+    @bob_public_key  ||= load_fixture_public_key('bob.key')
   end
 end
 

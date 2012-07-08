@@ -11,6 +11,6 @@ describe Cryptosphere::Handshake do
     # FIXME: need elliptic curve crypto here for smaller packets
     #packet.length.should be < MAX_DATAGRAM_LENGTH
     request = Cryptosphere::Handshake::RequestDecoder.new(bob, packet)
-    request.public_key.to_der.should eq alice.public_key.to_der
+    request.public_key.should eq alice.public_key
   end
 end

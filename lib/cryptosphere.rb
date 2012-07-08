@@ -2,7 +2,9 @@ require 'digest/sha2'
 require 'openssl'
 require 'cryptosphere/version'
 
+require 'cryptosphere/crypto/asymmetric_cipher'
 require 'cryptosphere/crypto/kdf'
+require 'cryptosphere/crypto/signature_algorithm'
 
 require 'cryptosphere/blobs/blob'
 require 'cryptosphere/blobs/tree'
@@ -17,30 +19,14 @@ module Cryptosphere
   # How large of a key to use for the pubkey cipher
   PUBKEY_SIZE = 2048
 
-  # 2048-bit pubkey cipher
-  # TODO: investigate ECDSA as an alternative
-  def self.pubkey_cipher
-    OpenSSL::PKey::RSA
+  # Secure random data source
+  def random_bytes(size)
+    OpenSSL::Random.random_bytes(size)
   end
 
   # 256-bit hash function
   def self.hash_function
     Digest::SHA256.new
-  end
-
-  # Signature function
-  def self.sign(key, message)
-    key.private_encrypt(kdf(message))
-  end
-
-  # Signature verification function
-  def self.verify(key, message, signature)
-    key.public_decrypt(signature) == kdf(message)
-  end
-
-  # Signature verification function that raises InvalidSignatureError
-  def self.verify!(key, message, signature)
-    verify(key, message, signature) or raise InvalidSignatureError, "signature mismatch"
   end
 
   # 256-bit block cipher

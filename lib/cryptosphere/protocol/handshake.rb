@@ -7,8 +7,8 @@ module Cryptosphere
 
       def to_signed_message
         # FIXME: We need a different algorithm for this to be possible
-        # message   = @recipient.public_key.public_encrypt @sender.public_key.to_der
-        message = @sender.public_key.to_der
+        # message = @recipient.public_key.public_encrypt @sender.public_key
+        message = @sender.public_key
 
         Cryptosphere.sign(@sender.private_key, message) + message
       end
@@ -19,7 +19,9 @@ module Cryptosphere
 
       def initialize(recipient, message)
         signature = message.slice!(0, PUBKEY_SIZE / 8)
-        sender_key = Cryptosphere.pubkey_cipher.new(message)
+
+        # FIXME: Use some crypto here
+        sender_key = message
         Cryptosphere.verify!(sender_key, message, signature)
 
         @public_key = sender_key

@@ -1,20 +1,17 @@
 module Cryptosphere
   class Identity
-    attr_reader :id, :private_key
+    attr_reader :id
+
+    extend Forwardable
+    def_delegators :@cipher, :private_key, :public_key
 
     def self.generate
-      new Cryptosphere.pubkey_cipher.generate(Cryptosphere::PUBKEY_SIZE).to_der
+      new AsymmetricCipher.generate_key
     end
 
-    def initialize(privkey)
-      @private_key = Cryptosphere.pubkey_cipher.new(privkey)
-
-      binary_id = Cryptosphere.kdf(@private_key.public_key.to_der)
-      @id = binary_id.unpack('H*').first.scan(/.{4}/).join(":")
-    end
-
-    def public_key
-      @private_key.public_key
+    def initialize(private_key)
+      @cipher = AsymmetricCipher.new(private_key)
+      @id     = @cipher.public_key_fingerprint
     end
 
     def to_s
