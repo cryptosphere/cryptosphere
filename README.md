@@ -42,7 +42,7 @@ Freenet and Tor which make an effort to obscure which host you're actually
 talking to by routing them through a chain of proxies. In this regard the
 anonymity guarantees of the Cryptosphere are no different from a system like
 BitTorrent, aside from the plausible deniability defense that comes from the
-fact all content is encrpyted and peers automatically provide storage service
+fact all content is encrypted and peers automatically provide storage service
 to other peers.
 
 Instead, the Cryptosphere favors system robustness over guarantees on
