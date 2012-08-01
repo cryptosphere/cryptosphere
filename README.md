@@ -16,6 +16,8 @@ MNet, Freenet, and Tahoe-LAFS. These systems serve as inspiration for the
 Cryptosphere's design. The Cryptosphere is also heavily influenced by Git, the
 distributed version control system.
 
+Like the Cryptosphere? [Join the Google Group](https://groups.google.com/group/cryptosphere)
+
 What makes the Cryptosphere different?
 --------------------------------------
 
