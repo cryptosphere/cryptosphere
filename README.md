@@ -50,6 +50,7 @@ following things:
 * Secure personal backups
 * File sharing among small groups (ala Dropbox)
 * Secure anonymous encrypted source control
+* Censorship-proof anonymous web hosting
 
 Suggested Reading
 -----------------
