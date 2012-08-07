@@ -16,133 +16,40 @@ MNet, Freenet, and Tahoe-LAFS. These systems serve as inspiration for the
 Cryptosphere's design. The Cryptosphere is also heavily influenced by Git, the
 distributed version control system.
 
-Like the Cryptosphere? [Join the Google Group](https://groups.google.com/group/cryptosphere)
+For more information, please see the [project philosophy][philosophy]
+page in the wiki.
 
-What makes the Cryptosphere different?
---------------------------------------
+Like the Cryptosphere? [Join the Google Group][google group]
+We're also on IRC at #cryptosphere on irc.freenode.net
 
-Many have sought to build an openly federated data storage system. Such a
-system was the basis for MojoNation, a startup which let you sell your
-storage and bandwidth for a virtual currency called Mojo. Unfortunately
-MojoNation never took off.
+[philosophy]:   https://github.com/tarcieri/cryptosphere/wiki/Philosophy
+[google group]: https://groups.google.com/group/cryptosphere
 
-Freenet is the most similar system to the Cryptosphere today. Freenet
-provides strong guarantees on anonymity and seeks to provide a low barrier
-of entry for publishing content on the system.
+### Is it any good?
 
-The Cryptosphere strikes a balance between these two systems. Instead of using
-any sort of virtual currency like Mojo, peers barter with each other in
-exchanges which are completely localized to the peers involved. However, while
-every peer in a cryptographic exchange keeps extensive, cryptographically
-signed records of what was exchanged (or what they attempted to exchange),
-the specifics of what data was exchanged are not stored in the records, nor
-can they be derived from decrypting the content.
+[Yes.](http://news.ycombinator.com/item?id=3067434)
 
-However, in a direct peer-to-peer exchange the Cryptosphere does nothing to
-mask the transactions a particular is performing, as opposed to systems like
-Freenet and Tor which make an effort to obscure which host you're actually
-talking to by routing them through a chain of proxies. In this regard the
-anonymity guarantees of the Cryptosphere are no different from a system like
-BitTorrent, aside from the plausible deniability defense that comes from the
-fact all content is encrypted and peers automatically provide storage service
-to other peers.
+### Is It "Production Ready™"?
 
-Instead, the Cryptosphere favors system robustness over guarantees on
-anonymity. Participants in the system maintain a history of their activities
-in the form of a long-chain certificate. You can think of this being somewhat
-like the BitCoin block chain, where the longest version always wins, and its
-integrity can be cryptographically verified. Every peer maintains its own long
-chain certificate of all its activities, including services requested and
-services completed.
+No, the Cryptosphere is still in an early development stage, and is not yet
+ready for general usage.
 
-Rather than verifying the integrity of a long chain based on hashes, the
-Cryptosphere uses public key cryptography. Peers requesting services sign off
-on both the request and delivery of a service (e.g. storing and serving a
-particular chunk of a file). While in isolation the data points contained
-within a particular long chain certificate are meaningless, peers can
-collect several of these certificates and build a database of other peers
-in the system, using tools like collaborative filtering to make intelligent
-decisions about which other peers are worth interacting with.
+Use Cases
+---------
 
-Greed, Altruism, and Reciprocity
---------------------------------
+The Cryptosphere provides an encrypted storage system where only users with
+the capability tokens for respective content are able to access it. Unlike
+many other peer to systems, there is no global search system because all
+content in the system is encrypted and therefore unsearchable.
 
-The Cryptosphere's trust model works to limit greed. Storage space and
-bandwidth are viewed as fungible commodities which come at a cost to the
-provider. Greedy peers want to consume these resources without contributing
-back to the system, ignoring the cost of the resources to those who provide
-it. There are two ways that greedy peers can abuse the system:
+This makes the Cryptosphere quite a bit different from many other P2P systems
+which sought to publicize users content. Instead, the Cryptosphere tries to
+keep your content as confidential as possible. This makes it useful for the
+following things:
 
-1. Storage: greedy peers will seek to fill the system with objects only they
-   are interested in
-
-2. Bandwidth: greedy peers will consume content from the system without
-   contributing bandwidth in return
-
-The Cryptosphere prevents greed by encouraging reciprocity through a sort of
-bartering system: storage is traded for storage and bandwidth, and bandwidth
-is traded for bandwidth. Peers select the best trading partners based on their
-own self-interest and all available data, then engage in trades. Trades with
-newcomers are initially considered risky, but have the potential to grow into
-a potentially fruitful relationship.
-
-Storage is negotiated in units called "creds" which equate to storing a single
-byte for one day (86400 seconds). At the end of the day peers can determine if
-the exchange was mutually beneficial and decide to renegotiate it for another
-day. Peers will avoid renegotiating with other peers that did not faithfully
-provide a service. The goal is for peers to eventually form long-term, ongoing
-relationships of storing particular pieces of data to ensure it remains highly
-available.
-
-By default the Cryptosphere software is tuned to be a somewhat altruistic risk
-taker in the interests of making the Cryptosphere as a whole a more useful and
-robust system. In the future it should be possible to tune the Cryptosphere
-to your needs as an individual peer, being as altruistic or stingy as you like.
-Altruistic peers will improve system robustness at the expense of being an
-easy target for greedy peers. Stingy peers will be difficult to trade with and
-will favor established members of the community with a good reputation among
-a large body of peers that the stingy peer knows directly.
-
-How the Cryptosphere stores data
---------------------------------
-
-As you might expect from the name, everything within the Cryptosphere is 
-encrypted using strong cryptography, in the form of public key ciphers,
-block ciphers, or hash functions. This includes every single packet used
-throughout the system (including the handshake!), and all data stored
-within the system.
-
-Data is stored using a technique called convergent encryption. Convergent
-encryption means that when a file is encrypted, you will always get the same
-cryptographic result, allowing files to be deduplicated globally. This
-approach works by calculating a hash (specifically a SHA256 hash) of a file's
-contents and using that as the key for a block cipher (specifically AES256).
-
-The Cryptosphere identifies values by the hash of the *encrypted* contents,
-meaning to get the plaintext for a particular file you must know two hashes:
-the hash of the encrypted file (in order to ask the peer network to download
-the file) and the original hash of the file's plaintext contents (in order to
-have the AES256 key to decrypt it)
-
-Because of this, the act of transferring a file or parts of files from other
-peers does not mean you have access to the plaintext. This means that users of
-the software have plausible deniability that by transferring the ciphertext of
-the content they have access to the plaintext. The system by its very nature
-works to increase the redundancy of data within the system in a distributed
-manner, and content may be transferred to a particular user's computer without
-the user of the software's knowledge or consent. 
-
-This makes it difficult to prove that a particular user was deliberately trying
-to access any specific piece of content on the system. Unless you can prove they
-have the original hash of any file you cannot establish they even have access to
-the contents, only to the ciphertext, and therefore logs of specific IP
-addresses transferring encrypted data prove nothing as the software by design may
-transfer parts of files between peers at any time. You cannot prove the user
-elected to engage in the transfer, and even if you could, unless you can prove
-the encryption key needed to access a particular piece of content is present on
-a particular user's computer (and that a particular person chose to obtain that
-encryption key) you cannot prove they actually voluntarily elected to acquire
-a particular piece of content.
+* Secure personal backups
+* File sharing among small groups (ala Dropbox)
+* Secure anonymous encrypted source control
 
 Suggested Reading
 -----------------
