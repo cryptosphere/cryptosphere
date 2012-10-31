@@ -1,6 +1,6 @@
 ![Celluloid](https://github.com/tarcieri/cryptosphere/raw/master/logo.png)
 ================
-[![Build Status](http://travis-ci.org/tarcieri/cryptosphere.png)](http://travis-ci.org/tarcieri/cryptosphere)
+[![Build Status](https://secure.travis-ci.org/tarcieri/cryptosphere.png?branch=master)](http://travis-ci.org/tarcieri/cryptosphere)
 
 > "I want people to see the truth... regardless of who they are... because
 > without information, you cannot make informed decisions as a public" _-- Bradley Manning_
