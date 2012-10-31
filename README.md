@@ -55,7 +55,7 @@ following things:
 Suggested Reading
 -----------------
 
-* [Tahoe - The Least-Authority Filesystem (Tahoe-LAFS)](https://tahoe-lafs.org/~zooko/lafs.pdf)
+* [Tahoe - The Least-Authority Filesystem (Tahoe-LAFS)](http://www.laser.dist.unige.it/Repository/IPI-1011/FileSystems/TahoeDFS.pdf)
 * [A Distributed Decentralized Information Storage and Retrieval System (Freenet)](http://freenetproject.org/papers/ddisrs.pdf)
 * [Efficient Sharing of Encrypted Data (GNUnet)](http://grothoff.org/christian/esed.pdf)
 * [Samsara: Honor Among Thieves in Peer-to-Peer Storage](http://www.eecs.harvard.edu/~mema/courses/cs264/papers/samsara-sosp2003.pdf)
