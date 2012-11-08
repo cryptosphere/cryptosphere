@@ -62,7 +62,7 @@ Suggested Reading
 * [The Sybil Attack](http://research.microsoft.com/pubs/74220/IPTPS2002.pdf)
 * [A Sybilproof Indirect Reciprocity Mechanism for Peer-to-Peer Networks](http://discovery.ucl.ac.uk/14962/1/14962.pdf)
 * [Incentive-driven QoS in peer-to-peer overlays](http://discovery.ucl.ac.uk/19490/1/19490.pdf)
-* [Enforcing collaboration in peer-to-peer routing services](http://citeseerx.ist.psu.edu/images/pdf_icon.gif)
+* [Enforcing collaboration in peer-to-peer routing services](http://www.cs.ox.ac.uk/people/andy.twigg/pubs/2003-kademlia-trust.pdf)
 
 Contributing to the Cryptosphere
 --------------------------------
