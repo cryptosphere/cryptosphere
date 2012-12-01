@@ -7,3 +7,11 @@
   background-image: -o-linear-gradient(top, #333333, #222222);
   background-image: linear-gradient(top, #333333, #222222);
 }
+
+#outer {
+  position: absolute;
+  top: 51px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
