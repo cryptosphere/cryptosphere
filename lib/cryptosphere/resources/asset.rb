@@ -18,7 +18,7 @@ class Cryptosphere::Resource::Asset < Webmachine::Resource
     when 'js'
       [["text/javascript", :produce_file]]
     when 'png'
-      [["img/png", :produce_file]]
+      [["image/png", :produce_file]]
     else
       [["text/html", nil]]
     end
