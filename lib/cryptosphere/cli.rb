@@ -3,9 +3,12 @@ require 'thor'
 module Cryptosphere
   class CLI < Thor
     
-    desc 'setup', 'Configure the Cryptosphere'
-    def setup
-      puts "Hi there!"
+    desc 'server', 'Run the Cryptosphere server'
+    def server
+      require 'cryptosphere/app'
+
+      Cryptosphere.logger.info "Starting web UI on http://#{Cryptosphere::APP_ADDR}:#{Cryptosphere::APP_PORT}"
+      Cryptosphere::App.run
     end
   end
 end

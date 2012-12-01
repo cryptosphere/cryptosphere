@@ -34,6 +34,10 @@ module Cryptosphere
     OpenSSL::Cipher::Cipher.new("aes-256-cbc")
   end
 
+  def self.logger
+    Celluloid.logger
+  end
+
   # Request to do something we're incapable of
   class CapabilityError < StandardError; end
 

@@ -14,10 +14,12 @@ Gem::Specification.new do |gem|
   gem.name          = "cryptosphere"
   gem.require_paths = ["lib"]
   gem.version       = Cryptosphere::VERSION
-  
-  gem.add_dependency "celluloid"
-  gem.add_dependency "thor"
-  gem.add_dependency "hkdf"
+
+  gem.add_runtime_dependency "celluloid"
+  gem.add_runtime_dependency "reel"
+  gem.add_runtime_dependency "webmachine"
+  gem.add_runtime_dependency "thor"
+  gem.add_runtime_dependency "hkdf"
 
   gem.add_development_dependency "rake"
   gem.add_development_dependency "rspec"
