@@ -34,6 +34,27 @@ We're also on IRC at #cryptosphere on irc.freenode.net
 No, the Cryptosphere is still in an early development stage, and is not yet
 ready for general usage.
 
+Is there anything I can play with now?
+--------------------------------------
+
+Not really, but to check out the work in progress:
+
+```
+git clone https://github.com/tarcieri/cryptosphere.git
+cd cryptosphere
+bundle
+bundle exec bin/crypt server
+```
+
+This will launch a local web server:
+
+```
+$ bundle exec bin/crypt server
+I, [2012-11-30T21:23:30.059083 #62043]  INFO -- : Starting web UI on http://127.0.0.1:7890
+```
+
+You can view the web UI at `http://127.0.0.1:7890`
+
 Use Cases
 ---------
 
