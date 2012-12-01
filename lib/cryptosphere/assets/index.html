@@ -10,11 +10,12 @@
   <!-- Password page styles, to be factored into a separate file -->
   <style>
     #doors {
+      z-index: 1;
       position: absolute;
-      top: 0;
+      top: 51px;
       left: 0;
-      width: 100%;
-      height: 100%;
+      bottom: 0;
+      right: 0;
       overflow: hidden;
     }
 
@@ -118,7 +119,7 @@
     }
 
     #passprompt {
-      z-index: 1;
+      z-index: 2;
       position: absolute;
       top: 50%;
       left: 50%;
@@ -139,17 +140,12 @@
   </style>
 
   <style>
-    body {
-      background: black;
-    }
-
     #outer {
       position: absolute;
       top: 51px;
       left: 0;
       bottom: 0;
       right: 0;
-      background: white;
     }
 
     #sandbox {
@@ -184,21 +180,23 @@
   </div>
 
   <div id="outer">
-    <div id="doors">
-      <div id="door-l" class="door-outer">
-        <div class="door-inner"></div>
-      </div>
-      <div id="door-r" class="door-outer">
-        <div class="door-inner">
-          <div id="passsphere" class="sphere">
-          <div id="passprompt">PASSWORD:</div>
-            <input id="passfield" type="password" autofocus="autofocus"></input>
-            <button class="btn btn-primary" onClick="openSesame();">Unlock</button>
-          </div>
-        </div>
+    Hello, world!
+  </div>
+
+  <div id="doors">
+  <div id="door-l" class="door-outer">
+    <div class="door-inner"></div>
+  </div>
+  <div id="door-r" class="door-outer">
+    <div class="door-inner">
+      <div id="passsphere" class="sphere">
+      <div id="passprompt">PASSWORD:</div>
+        <input id="passfield" type="password" autofocus="autofocus"></input>
+        <button class="btn btn-primary" onClick="openSesame();">Unlock</button>
       </div>
     </div>
   </div>
+</div>
 </body>
 
 <script>
