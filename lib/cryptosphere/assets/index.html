@@ -8,7 +8,54 @@
   <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
+
+  <!-- Password page styles, to be factored into a separate file -->
   <style>
+    .door-outer {
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      background: #999999;
+      padding: 40px;
+
+      /* IE10 Consumer Preview */
+      background-image: -ms-linear-gradient(top, #888888 0%, #555555 100%);
+
+      /* Mozilla Firefox */
+      background-image: -moz-linear-gradient(top, #888888 0%, #555555 100%);
+
+      /* Opera */
+      background-image: -o-linear-gradient(top, #888888 0%, #555555 100%);
+
+      /* Webkit (Safari/Chrome 10) */
+      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #888888), color-stop(1, #555555));
+
+      /* Webkit (Chrome 11+) */
+      background-image: -webkit-linear-gradient(top, #888888 0%, #555555 100%);
+
+      /* W3C Markup, IE10 Release Preview */
+      background-image: linear-gradient(to bottom, #888888 0%, #555555 100%);
+    }
+
+    .door-inner {
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      height: 100%;
+      -moz-box-shadow: 0 0 40px 40px rgb(64,64,64);
+      -webkit-box-shadow: 0 0 40px 40px rgb(64,64,64);
+      box-shadow: 0 0 40px 40px rgb(64,64,64);
+    }
+
+    #door_r {
+      left: 50%;
+    }
+
     .sphere {
       position: absolute;
       top: 50%;
@@ -65,6 +112,13 @@
   </style>
 </head>
 <body>
+  <div id="door_l" class="door-outer">
+    <div class="door-inner"></div>
+  </div>
+  <div id="door_r" class="door-outer">
+    <div class="door-inner"></div>
+  </div>
+
   <div class="sphere">
     <div id="passprompt">PASSWORD:</div>
     <input type="password" autofocus="autofocus"></input>
