@@ -11,12 +11,16 @@ module Cryptosphere
 
   # Namespace for all Cryptosphere Webmachine Resources
   module Resource; end
+
+  require 'cryptosphere/resources/asset'
   require 'cryptosphere/resources/home'
 
   # The Cryptosphere webapp
   App = Webmachine::Application.new do |app|
     app.routes do
-      # Point all URIs at the MyResource class
+      add ['assets', '*'], Resource::Asset
+
+      # Point all URIs at the Resource::Home class
       add ['*'], Resource::Home
     end
 
