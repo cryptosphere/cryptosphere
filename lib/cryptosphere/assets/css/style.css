@@ -1,5 +1,6 @@
 body {
-  background: black;
+  margin-top: 50px;
+  background: white;
 }
 
 .navbar-inner {
@@ -12,13 +13,4 @@ body {
   background-image: linear-gradient(top, #333333, #222222);
 
   border: none;
-}
-
-#outer {
-  position: absolute;
-  top: 51px;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background: white;
 }
