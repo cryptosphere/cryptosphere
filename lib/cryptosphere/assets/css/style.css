@@ -1,6 +1,23 @@
+html {
+  height: 100%;
+}
+
 body {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   margin-top: 50px;
-  background: white;
+}
+
+#wrap {
+  min-height: 100%;
+}
+
+#main {
+  overflow: auto;
+  padding-bottom: 50px;
 }
 
 .navbar-inner {
@@ -13,4 +30,8 @@ body {
   background-image: linear-gradient(top, #333333, #222222);
 
   border: none;
+}
+
+.sidebar {
+  border-right: 1px solid #ddd;
 }

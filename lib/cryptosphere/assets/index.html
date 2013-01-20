@@ -28,9 +28,8 @@
     </div>
   </div>
 
-  <div>
-    <div class="row-fluid">
-      <div class="span2">
+  <div id="wrap" class="row-fluid">
+      <div class="sidebar span2">
         <table class="table table-striped">
           <tr><td>Foo</td></tr>
           <tr><td>Bar</td></tr>
@@ -42,6 +41,7 @@
       </div>
     </div>
   </div>
+  <footer class="footer">&copy; 2012 Tony Arcieri</footer>
 
   <div id="doors">
   <div id="door-l" class="door-outer">
@@ -50,13 +50,13 @@
   <div id="door-r" class="door-outer">
     <div class="door-inner">
       <div id="passsphere" class="sphere">
-      <div id="passprompt">PASSWORD:</div>
-        <input id="passfield" type="password" autofocus="autofocus"></input>
-        <button class="btn btn-primary" onClick="openSesame();">Unlock</button>
+        <div id="passprompt">PASSWORD:</div>
+          <input id="passfield" type="password" autofocus="autofocus"></input>
+          <button class="btn btn-primary" onClick="openSesame();">Unlock</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </body>
 
 <script>
