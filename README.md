@@ -29,10 +29,19 @@ We're also on IRC at #cryptosphere on irc.freenode.net
 
 [Yes.](http://news.ycombinator.com/item?id=3067434)
 
-### Is It "Production Ready™"?
+### Is it "Production Ready™"?
 
 No, the Cryptosphere is still in an early development stage, and is not yet
 ready for general usage.
+
+### Why is progress so slow?
+
+Much of the present work is going into building prerequisite components, such as
+the [RbNaCl][rbnacl] gem which will provide the cryptographic foundation for the
+system. The goal of the Cryptosphere is to use the best cryptographic algorithms
+available to ensure the system is both secure and fast.
+
+[rbnacl]: https://github.com/tarcieri/rbnacl
 
 Is there anything I can play with now?
 --------------------------------------
