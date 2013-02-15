@@ -41,7 +41,7 @@ the [RbNaCl][rbnacl] gem which will provide the cryptographic foundation for the
 system. The goal of the Cryptosphere is to use the best cryptographic algorithms
 available to ensure the system is both secure and fast.
 
-[rbnacl]: https://github.com/tarcieri/rbnacl
+[rbnacl]: https://github.com/cryptosphere/rbnacl
 
 Is there anything I can play with now?
 --------------------------------------
