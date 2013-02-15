@@ -1,4 +1,4 @@
-![Celluloid](https://github.com/tarcieri/cryptosphere/raw/master/logo.png)
+![Celluloid](https://github.com/cryptosphere/cryptosphere/raw/master/logo.png)
 ================
 [![Build Status](https://secure.travis-ci.org/tarcieri/cryptosphere.png?branch=master)](http://travis-ci.org/tarcieri/cryptosphere)
 
