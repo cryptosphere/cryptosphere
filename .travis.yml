@@ -1,6 +1,16 @@
 rvm:
   - 1.9.3
+  - 2.0.0
   - ruby-head
-#  - jruby-19mode not working due to JCE issues
-#  - jruby-head
+  - jruby-19mode
+  - jruby-head
   - rbx-19mode
+
+matrix:
+  allow_failures:
+    - rvm: ruby-head
+    - rvm: jruby-19mode
+    - rvm: jruby-head
+
+notifications:
+  irc: "irc.freenode.org#cryptosphere"
