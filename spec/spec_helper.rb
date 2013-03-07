@@ -3,6 +3,9 @@ require 'bundler/setup'
 require 'cryptosphere'
 require 'fileutils'
 
+require 'coveralls'
+Coveralls.wear!
+
 Root = File.expand_path("../tmp", __FILE__)
 
 FileUtils.rm_rf File.join(Root, "*")
