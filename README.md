@@ -1,9 +1,9 @@
 ![Celluloid](https://github.com/cryptosphere/cryptosphere/raw/master/logo.png)
 ================
 [![Build Status](https://secure.travis-ci.org/tarcieri/cryptosphere.png?branch=master)](http://travis-ci.org/tarcieri/cryptosphere)
+[![Dependency Status](https://gemnasium.com/cryptosphere/cryptosphere.png)](https://gemnasium.com/cryptosphere/cryptosphere)
 [![Code Climate](https://codeclimate.com/github/cryptosphere/cryptosphere.png)](https://codeclimate.com/github/cryptosphere/cryptosphere)
 [![Coverage Status](https://coveralls.io/repos/cryptosphere/cryptosphere/badge.png?branch=master)](https://coveralls.io/r/cryptosphere/cryptosphere)
-[![Dependency Status](https://gemnasium.com/cryptosphere/cryptosphere.png)](https://gemnasium.com/cryptosphere/cryptosphere)
 
 > "I want people to see the truth... regardless of who they are... because
 > without information, you cannot make informed decisions as a public" _-- Bradley Manning_
