@@ -25,7 +25,7 @@ page in the wiki.
 Like the Cryptosphere? [Join the Google Group][google group]
 We're also on IRC at #cryptosphere on irc.freenode.net
 
-[philosophy]:   https://github.com/tarcieri/cryptosphere/wiki/Philosophy
+[philosophy]:   https://github.com/cryptosphere/cryptosphere/wiki/Philosophy
 [google group]: https://groups.google.com/group/cryptosphere
 
 ### Is it any good?
@@ -52,7 +52,7 @@ Is there anything I can play with now?
 Not really, but to check out the work in progress:
 
 ```
-git clone https://github.com/tarcieri/cryptosphere.git
+git clone https://github.com/cryptosphere/cryptosphere.git
 cd cryptosphere
 bundle
 bundle exec bin/crypt server
