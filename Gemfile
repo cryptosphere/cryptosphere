@@ -1,4 +1,4 @@
-source :rubygems
+source "https://rubygems.org"
 
 gem 'jruby-openssl', platform: 'jruby'
 gem 'webmachine',    github:   'seancribbs/webmachine-ruby'
