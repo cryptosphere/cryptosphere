@@ -34,6 +34,8 @@ We're also on IRC at #cryptosphere on irc.freenode.net
 
 ### Is it "Production Ready™"?
 
+![DANGER: EXPERIMENTAL](https://raw.github.com/cryptosphere/cryptosphere/master/images/experimental.png)
+
 No, the Cryptosphere is still in an early development stage, and is not yet
 ready for general usage.
 
