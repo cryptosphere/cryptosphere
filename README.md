@@ -103,8 +103,8 @@ Contributing to the Cryptosphere
 --------------------------------
 
 * Fork this repository on github
-* Make your changes and send me a pull request
-* If I like them I'll merge them
+* Make your changes and send us a pull request
+* If we like them we'll merge them
 
 License
 -------
