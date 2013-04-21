@@ -9,8 +9,6 @@ require 'cryptosphere/crypto/signature_algorithm'
 require 'cryptosphere/blobs/blob'
 require 'cryptosphere/blobs/tree'
 
-require 'cryptosphere/protocol/handshake'
-
 require 'cryptosphere/cli'
 require 'cryptosphere/head'
 require 'cryptosphere/identity'
