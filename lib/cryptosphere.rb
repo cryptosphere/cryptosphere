@@ -6,6 +6,7 @@ require 'cryptosphere/crypto/asymmetric_cipher'
 require 'cryptosphere/crypto/kdf'
 require 'cryptosphere/crypto/signature_algorithm'
 
+require 'cryptosphere/block'
 require 'cryptosphere/blobs/blob'
 require 'cryptosphere/blobs/tree'
 

@@ -20,6 +20,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency "webmachine"
   gem.add_runtime_dependency "thor"
   gem.add_runtime_dependency "hkdf"
+  gem.add_runtime_dependency "rbnacl"
 
   gem.add_development_dependency "rake"
   gem.add_development_dependency "rspec"

@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
 gem 'webmachine', github: 'seancribbs/webmachine-ruby'
+gem 'rbnacl',     github: 'cryptosphere/rbnacl', branch: 'blake2b-keyed'
 
 gem 'jruby-openssl', platform: 'jruby'
 
