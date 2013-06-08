@@ -1,5 +1,7 @@
 require 'digest/sha2'
 require 'openssl'
+require 'base32'
+
 require 'cryptosphere/version'
 
 require 'cryptosphere/crypto/asymmetric_cipher'
@@ -19,7 +21,7 @@ module Cryptosphere
   PUBKEY_SIZE = 2048
 
   # Secure random data source
-  def random_bytes(size)
+  def self.random_bytes(size)
     OpenSSL::Random.random_bytes(size)
   end
 
@@ -35,6 +37,16 @@ module Cryptosphere
 
   def self.logger
     Celluloid.logger
+  end
+
+  # Encode a string in Zooko-style Base32
+  def self.base32_encode(string)
+    Base32.encode(string).downcase.sub(/=+$/, '')
+  end
+
+  # Decode a Base32 string
+  def self.base32_decode(string)
+    Base32.decode(string)
   end
 
   # Request to do something we're incapable of

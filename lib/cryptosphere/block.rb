@@ -1,3 +1,4 @@
+require 'base32'
 require 'cryptosphere/block/blake2bxsalsa20poly1305'
 
 module Cryptosphere
@@ -27,14 +28,20 @@ module Cryptosphere
       new(PRIMITIVE.encrypt(key, plaintext), key)
     end
 
-    attr_reader :key, :ciphertext, :plaintext
+    attr_reader :raw_id, :key, :ciphertext, :plaintext
 
     # Create a new block from it's ciphertext. Specify a key to allow decryption
     def initialize(ciphertext, key = nil)
       @key = key
 
       @ciphertext = ciphertext
+      @raw_id     = PRIMITIVE.derive_key(ciphertext, "block")
       @plaintext  = PRIMITIVE.decrypt(key, ciphertext) if key
+    end
+
+    # Return the ID of this block in Base32 format
+    def id
+      Cryptosphere.base32_encode @raw_id
     end
   end
 end
