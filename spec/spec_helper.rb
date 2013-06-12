@@ -6,11 +6,6 @@ require 'fileutils'
 require 'coveralls'
 Coveralls.wear!
 
-Root = File.expand_path("../tmp", __FILE__)
-
-FileUtils.rm_rf File.join(Root, "*")
-Cryptosphere::Blob.setup :root => Root
-
 module KeyExamples
   def load_fixture_private_key(name = 'alice.key')
     File.read File.expand_path("../fixtures/#{name}", __FILE__)

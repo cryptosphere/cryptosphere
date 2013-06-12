@@ -9,8 +9,6 @@ require 'cryptosphere/crypto/kdf'
 require 'cryptosphere/crypto/signature_algorithm'
 
 require 'cryptosphere/block'
-require 'cryptosphere/blobs/blob'
-require 'cryptosphere/blobs/tree'
 
 require 'cryptosphere/cli'
 require 'cryptosphere/head'
