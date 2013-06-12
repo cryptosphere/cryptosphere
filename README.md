@@ -110,3 +110,7 @@ License
 
 Copyright (c) 2013 Tony Arcieri. Distributed under the MIT License. See
 LICENSE.txt for further details.
+
+---
+
+> Dedicated to the memory of Iain Banks
