@@ -49,7 +49,7 @@ module Cryptosphere
       signature, message = rest.unpack("A#{signature_size}A*")
 
       if @signing_cipher.public_decrypt(signature) != Cryptosphere.kdf(message)
-        raise InvalidSignatureError, "signature does not match message"
+        raise ForgeryError, "signature does not match message"
       end
 
       timestamp, iv, ciphertext = message.unpack("QA16A*")

@@ -20,6 +20,9 @@ module Cryptosphere
   # How large of a key to use for the pubkey cipher
   PUBKEY_SIZE = 2048
 
+  # Size of symmetric keys in bytes (32 bytes, 256-bits)
+  SECRET_KEY_BYTES = Crypto::SecretBox::KEYBYTES
+
   # Secure random data source
   def self.random_bytes(size)
     OpenSSL::Random.random_bytes(size)
@@ -46,14 +49,14 @@ module Cryptosphere
 
   # Decode a Base32 string
   def self.base32_decode(string)
-    Base32.decode(string)
+    Base32.decode(string.upcase)
   end
 
   # Request to do something we're incapable of
   class CapabilityError < StandardError; end
 
   # Signature doesn't match (potential data tampering)
-  class InvalidSignatureError < StandardError; end
+  class ForgeryError < StandardError; end
 
   # Implausible timestamps (i.e. ones from the future)
   class InvalidTimestampError < StandardError; end

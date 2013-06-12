@@ -10,8 +10,8 @@ module Cryptosphere
     AsymmetricCipher.new(key).public_decrypt(signature) == kdf(message)
   end
 
-  # Verify a message, raising InvalidSignatureError on signature mismatch
+  # Verify a message, raising ForgeryError on signature mismatch
   def self.verify!(key, message, signature)
-    verify(key, message, signature) or raise InvalidSignatureError, "signature mismatch"
+    verify(key, message, signature) or raise ForgeryError, "signature mismatch"
   end
 end
