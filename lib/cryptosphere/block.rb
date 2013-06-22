@@ -1,5 +1,5 @@
 require 'base32'
-require 'cryptosphere/block/blake2bxsalsa20poly1305'
+require 'cryptosphere/block/primitive/blake2bxsalsa20poly1305'
 
 module Cryptosphere
   # Blocks are the underlying convergent encryption primitive used by the
@@ -25,12 +25,12 @@ module Cryptosphere
 
     # Encryption primitive to use (we only support one now but might support
     # more in the future)
-    PRIMITIVE = Blake2bXSalsa20Poly1305
+    DEFAULT_PRIMITIVE = Primitive::Blake2bXSalsa20Poly1305
 
     def self.encrypt(plaintext, convergence_secret = nil)
-      key        = PRIMITIVE.derive_key(plaintext, convergence_secret)
-      ciphertext = PRIMITIVE.encrypt(key, plaintext)
-      id         = PRIMITIVE.derive_key(ciphertext, HASH_KEY)
+      key        = DEFAULT_PRIMITIVE.derive_key(plaintext, convergence_secret)
+      ciphertext = DEFAULT_PRIMITIVE.encrypt(key, plaintext)
+      id         = DEFAULT_PRIMITIVE.derive_key(ciphertext, HASH_KEY)
 
       # We can safely skip ID verification because we just computed
       # the ID of the hash ourselves, and we trust ourself, right?
@@ -52,13 +52,13 @@ module Cryptosphere
       # We can't rely on the MAC alone because anyone with the key can produce
       # ciphertexts under the same key which are not the ciphertext we're looking for
       unless options.fetch(:skip_id_check, false)
-        expected_id = PRIMITIVE.derive_key(ciphertext, HASH_KEY)
+        expected_id = DEFAULT_PRIMITIVE.derive_key(ciphertext, HASH_KEY)
         raise ForgeryError, "forged block!" unless Crypto::Util.verify32(@id, expected_id)
       end
 
       @key = options.fetch(:key, nil)
       @ciphertext = ciphertext
-      @plaintext  = PRIMITIVE.decrypt(key, ciphertext) if key
+      @plaintext  = DEFAULT_PRIMITIVE.decrypt(key, ciphertext) if key
     end
 
     # Return the ID of this block in Base32 format
