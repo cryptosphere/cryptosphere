@@ -23,7 +23,7 @@ module Cryptosphere
 
   # Secure random data source
   def self.random_bytes(size)
-    OpenSSL::Random.random_bytes(size)
+    Crypto::Random.random_bytes(size)
   end
 
   # 256-bit hash function
