@@ -45,7 +45,7 @@ module Cryptosphere
       if id.length == SECRET_KEY_BYTES
         @id = id
       else
-        @id = Cryptosphere.base32_decode(id)
+        @id = Encoding.decode(id)
       end
 
       # Verify the ID of the content matches the ciphertext
@@ -63,7 +63,7 @@ module Cryptosphere
 
     # Return the ID of this block in Base32 format
     def id
-      Cryptosphere.base32_encode @id
+      Encoding.encode @id
     end
   end
 end

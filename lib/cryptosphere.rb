@@ -1,6 +1,5 @@
 require 'digest/sha2'
 require 'openssl'
-require 'base32'
 
 require 'cryptosphere/version'
 
@@ -9,6 +8,7 @@ require 'cryptosphere/crypto/kdf'
 require 'cryptosphere/crypto/signature_algorithm'
 
 require 'cryptosphere/block'
+require 'cryptosphere/encoding'
 
 require 'cryptosphere/cli'
 require 'cryptosphere/head'
@@ -38,16 +38,6 @@ module Cryptosphere
 
   def self.logger
     Celluloid.logger
-  end
-
-  # Encode a string in Zooko-style Base32
-  def self.base32_encode(string)
-    Base32.encode(string).downcase.sub(/=+$/, '')
-  end
-
-  # Decode a Base32 string
-  def self.base32_decode(string)
-    Base32.decode(string.upcase)
   end
 
   # Request to do something we're incapable of
