@@ -2,7 +2,7 @@ require 'rbnacl'
 require 'uri'
 
 module Cryptosphere
-  module Head
+  module Heads
     # WriteHeads are capable of of creating new Cryptosphere::Position objects
     # which identify the locations of content trees in the system, much like
     # git's heads. It degrades into a ReadHead, thus anyone with a WriteHead

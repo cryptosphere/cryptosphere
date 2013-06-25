@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Cryptosphere::Head::ReadHead do
+describe Cryptosphere::Heads::ReadHead do
   pending "raises if given the wrong URI scheme"
   pending "identifies stale data"
   pending "identifies data with timestamps in the future"

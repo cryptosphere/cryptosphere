@@ -2,7 +2,7 @@ require 'rbnacl'
 require 'uri'
 
 module Cryptosphere
-  module Head
+  module Heads
     # ReadHeads are capable of decrypting a unique position as encrypted by its
     # associated WriteHead.
     class ReadHead

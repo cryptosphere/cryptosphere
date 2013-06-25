@@ -1,5 +1,5 @@
 require 'base32'
-require 'cryptosphere/block/primitive/blake2bxsalsa20poly1305'
+require 'cryptosphere/primitives/blake2bxsalsa20poly1305'
 
 module Cryptosphere
   # Blocks are the underlying convergent encryption primitive used by the
@@ -25,7 +25,7 @@ module Cryptosphere
 
     # Encryption primitive to use (we only support one now but might support
     # more in the future)
-    DEFAULT_PRIMITIVE = Primitive::Blake2bXSalsa20Poly1305
+    DEFAULT_PRIMITIVE = Primitives::Blake2bXSalsa20Poly1305
 
     def self.encrypt(plaintext, convergence_secret = nil)
       key        = DEFAULT_PRIMITIVE.derive_key(plaintext, convergence_secret)

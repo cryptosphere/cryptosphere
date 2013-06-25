@@ -4,8 +4,8 @@ require 'cryptosphere/block'
 require 'cryptosphere/encoding'
 require 'cryptosphere/position'
 
-require 'cryptosphere/head/read_head'
-require 'cryptosphere/head/write_head'
+require 'cryptosphere/heads/read_head'
+require 'cryptosphere/heads/write_head'
 
 require 'cryptosphere/cli'
 

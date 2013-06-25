@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Cryptosphere::Head::WriteHead do
+describe Cryptosphere::Heads::WriteHead do
   subject { described_class.generate("foobar") }
 
   let(:read_head) { subject.read_head }
