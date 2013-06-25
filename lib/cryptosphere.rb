@@ -10,9 +10,6 @@ require 'cryptosphere/heads/write_head'
 require 'cryptosphere/cli'
 
 module Cryptosphere
-  # How large of a key to use for the pubkey cipher
-  PUBKEY_SIZE = 2048
-
   # Size of symmetric keys in bytes (32 bytes, 256-bits)
   SECRET_KEY_BYTES = Crypto::SecretBox::KEYBYTES
 
