@@ -1,18 +1,13 @@
-require 'digest/sha2'
-require 'openssl'
-
 require 'cryptosphere/version'
-
-require 'cryptosphere/crypto/asymmetric_cipher'
-require 'cryptosphere/crypto/kdf'
-require 'cryptosphere/crypto/signature_algorithm'
 
 require 'cryptosphere/block'
 require 'cryptosphere/encoding'
+require 'cryptosphere/position'
+
+require 'cryptosphere/heads/read_head'
+require 'cryptosphere/heads/write_head'
 
 require 'cryptosphere/cli'
-require 'cryptosphere/head'
-require 'cryptosphere/identity'
 
 module Cryptosphere
   # How large of a key to use for the pubkey cipher
@@ -24,16 +19,6 @@ module Cryptosphere
   # Secure random data source
   def self.random_bytes(size)
     Crypto::Random.random_bytes(size)
-  end
-
-  # 256-bit hash function
-  def self.hash_function
-    Digest::SHA256.new
-  end
-
-  # 256-bit block cipher
-  def self.block_cipher
-    OpenSSL::Cipher::Cipher.new("aes-256-cbc")
   end
 
   def self.logger

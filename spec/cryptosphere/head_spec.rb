@@ -1,21 +1,25 @@
 require 'spec_helper'
 
-describe Cryptosphere::Head do
-  let(:read_key)   { "X" * 32 }
-  let(:write_key)  { example_private_key }
-  let(:verify_key) { example_public_key }
+describe Cryptosphere::WriteHead do
+  subject { described_class.generate("foobar") }
 
-  let(:reader) { Cryptosphere::Head.new(verify_key, read_key) }
-  let(:writer) { Cryptosphere::Head.new(write_key,  read_key) }
-
-  let(:example_location) { "221B Baker Street" }
+  let(:read_head) { subject.read_head }
+  let(:example_uri) { "crypt:221B+Baker+Street" }
 
   it "moves heads" do
-    writer.move(example_location)
-    message = writer.to_signed_message
-    message.length.should be < MAX_DATAGRAM_LENGTH
+    position = subject.set_uri(example_uri)
+    message  = position.to_s
 
-    reader.update message
-    reader.location.should == example_location
+    new_position = read_head.read(message)
+    new_position.uri.should eq example_uri
   end
+
+  pending "raises if given the wrong URI scheme"
+end
+
+describe Cryptosphere::ReadHead do
+  pending "raises if given the wrong URI scheme"
+  pending "identifies stale data"
+  pending "identifies data with timestamps in the future"
+  pending "identifies positions with invalid signatures"
 end
