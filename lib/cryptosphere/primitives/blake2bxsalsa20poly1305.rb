@@ -39,6 +39,13 @@ module Cryptosphere
       # Fixed nonce to use for all blocks (since they each have a unique key)
       NONCE = "\0" * Crypto::SecretBox.nonce_bytes
 
+      # Derive an encryption key using Blake2b in keyed mode. To achieve
+      # convergent encryption, we derive keys from hashes of the plaintext,
+      # plus an optional convergence secret
+      #
+      # @param plaintext [String] plaintext from which a key should be derived
+      # @param convergence_secret [String] optional secret value
+      # @return [String] derived encryption key
       def derive_key(plaintext, convergence_secret)
         Crypto::Hash.blake2b(
           plaintext,
@@ -47,10 +54,21 @@ module Cryptosphere
         )
       end
 
+      # Encrypt a block's plaintext under this scheme. We can omit a nonce
+      # and use an all-zero one because we derive a unique key per block.
+      #
+      # @param key [String] uniquely derived encryption key to be used
+      # @param plaintext [String] plaintext to be encrypted with the given key
+      # @return [String] ciphertext for the given inputs
       def encrypt(key, plaintext)
         Crypto::SecretBox.new(key).encrypt(NONCE, plaintext)
       end
 
+      # Decrypt a block using the given key
+      #
+      # @param key [String] uniquely derived encryption key to be used
+      # @param ciphertext [String] ciphertext to be decrypted
+      # @return [String] decrypted plaintext
       def decrypt(key, ciphertext)
         Crypto::SecretBox.new(key).decrypt(NONCE, ciphertext)
       end
