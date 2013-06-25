@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Cryptosphere::WriteHead do
+describe Cryptosphere::Head::WriteHead do
   subject { described_class.generate("foobar") }
 
   let(:read_head) { subject.read_head }
@@ -15,11 +15,4 @@ describe Cryptosphere::WriteHead do
   end
 
   pending "raises if given the wrong URI scheme"
-end
-
-describe Cryptosphere::ReadHead do
-  pending "raises if given the wrong URI scheme"
-  pending "identifies stale data"
-  pending "identifies data with timestamps in the future"
-  pending "identifies positions with invalid signatures"
 end
