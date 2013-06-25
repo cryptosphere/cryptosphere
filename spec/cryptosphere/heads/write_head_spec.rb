@@ -14,5 +14,10 @@ describe Cryptosphere::Heads::WriteHead do
     new_position.uri.should eq example_uri
   end
 
-  pending "raises if given the wrong URI scheme"
+  it "raises if given the wrong URI scheme" do
+    expect { described_class.new("crypt.readhead:foobar") }.to raise_exception(ArgumentError)
+  end
+
+  pending "raises if given an unknown URI version"
+  pending "raises if given a URI with a malformed authority section"
 end
