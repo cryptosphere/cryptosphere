@@ -30,4 +30,29 @@ module Cryptosphere
       config.adapter = :CryptosphereReel
     end
   end
+
+  class RequestLogger
+    def call(*args)
+      handle_event(Webmachine::Events::InstrumentedEvent.new(*args))
+    end
+
+    def handle_event(event)
+      request  = event.payload[:request]
+      resource = event.payload[:resource]
+      code     = event.payload[:code]
+
+      # Translate extended HTTP verbs via the magical query parameter
+      if request.method == "POST" && request.query['_method']
+        method = request.query['_method']
+      else
+        method = request.method
+      end
+
+      Cryptosphere.logger.info "[%s] %s (code=%d resource=%s time=%.1f ms)" % [
+        method, request.uri, code, resource, event.duration
+      ]
+    end
+  end
+
+  Webmachine::Events.subscribe('wm.dispatch', RequestLogger.new)
 end
