@@ -15,7 +15,7 @@ module Webmachine
       # Nonstandard HTTP verbs (i.e. WebDAV) not understood by Webmachine's
       # state machine, to translate to a POST request with the actual verb
       # passed via the magical _method param ala Rails
-      EXTENDED_VERBS = Set.new([:propfind, :proppatch, :mkcol, :copy, :move, :lock, :unlock])
+      EXTENDED_VERBS = Set.new(%w(PROPFIND PROPPATCH MKCOL COPY MOVE LOCK UNLOCK))
 
       def run
         options = {
@@ -40,10 +40,10 @@ module Webmachine
           # Translate WebDAV verbs into POST requests with a _method param
           if EXTENDED_VERBS.include?(reel_request.method)
             method = "POST"
-            param  = "_method=#{request_method(reel_request)}"
+            param  = "_method=#{reel_request.method}"
             uri    = request_uri(reel_request.url, reel_request.headers, param)
           else
-            method = request_method(reel_request)
+            method = reel_request.method
             uri    = request_uri(reel_request.url, reel_request.headers)
           end
 
@@ -56,10 +56,6 @@ module Webmachine
 
           connection.respond ::Reel::Response.new(response.code, response.headers, response.body)
         end
-      end
-
-      def request_method(request)
-        request.method.to_s.upcase
       end
 
       def request_uri(path, headers, extra_query_params = nil)

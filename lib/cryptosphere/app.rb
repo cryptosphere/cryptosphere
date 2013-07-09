@@ -1,6 +1,7 @@
 require 'cryptosphere'
+
 require 'webmachine'
-require 'webmachine/adapters/reel'
+require 'webmachine/adapters/cryptosphere_reel'
 
 module Cryptosphere
   # Default address of the webapp
@@ -18,16 +19,15 @@ module Cryptosphere
   # The Cryptosphere webapp
   App = Webmachine::Application.new do |app|
     app.routes do
+      # Base web application routes
       add ['assets', '*'], Resource::Asset
-
-      # Point all URIs at the Resource::Home class
       add ['*'], Resource::Home
     end
 
     app.configure do |config|
       config.ip      = APP_ADDR
       config.port    = APP_PORT
-      config.adapter = :Reel
+      config.adapter = :CryptosphereReel
     end
   end
 end
