@@ -47,7 +47,13 @@ and usage notes.
 Is there anything I can play with now?
 --------------------------------------
 
-Not really, but to check out the work in progress:
+Not really, but you can check out the work in progress.
+
+First, make sure that [libsodium](https://github.com/libsodium/libsodium) is available.
+For OS X, it is available via Homebrew: `brew install libsodium`. On other systems, follow
+the [installation instructions](https://github.com/jedisct1/libsodium#installation).
+
+Then set up the cryptosphere:
 
 ```
 git clone https://github.com/cryptosphere/cryptosphere.git
