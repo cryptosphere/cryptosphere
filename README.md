@@ -38,6 +38,12 @@ We're also on IRC at #cryptosphere on irc.freenode.net
 No, the Cryptosphere is still in an early development stage, and is not yet
 ready for general usage.
 
+Documentation
+-------------
+[The Cryptosphere Wiki](https://github.com/cryptosphere/cryptosphere/wiki)
+contains all relevant documentation, including the protocol specification, FAQ,
+and usage notes.
+
 Is there anything I can play with now?
 --------------------------------------
 
