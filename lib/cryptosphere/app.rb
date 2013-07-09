@@ -1,4 +1,5 @@
 require 'cryptosphere'
+require 'cryptosphere/git'
 
 require 'webmachine'
 require 'webmachine/adapters/cryptosphere_reel'
@@ -19,6 +20,10 @@ module Cryptosphere
   # The Cryptosphere webapp
   App = Webmachine::Application.new do |app|
     app.routes do
+      # Git-related routes
+      # TODO: factor these elsewhere
+      add ['repos', :repo_id, 'info', 'refs'], Git::Refs
+
       # Base web application routes
       add ['assets', '*'], Resource::Asset
       add ['*'], Resource::Home
