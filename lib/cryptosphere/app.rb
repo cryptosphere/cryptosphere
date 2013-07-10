@@ -3,6 +3,7 @@ require 'cryptosphere/git'
 
 require 'webmachine'
 require 'webmachine/adapters/cryptosphere_reel'
+require 'uri'
 
 module Cryptosphere
   # Default address of the webapp
@@ -45,6 +46,7 @@ module Cryptosphere
       request  = event.payload[:request]
       resource = event.payload[:resource]
       code     = event.payload[:code]
+      uri      = URI(request.uri)
 
       # Translate extended HTTP verbs via the magical query parameter
       if request.method == "POST" && request.query['_method']
@@ -53,8 +55,8 @@ module Cryptosphere
         method = request.method
       end
 
-      Cryptosphere.logger.info "[%s] %s (code=%d resource=%s time=%.1f ms)" % [
-        method, request.uri, code, resource, event.duration
+      Cryptosphere.logger.info "\"%s %s\" %d %.1fms (%s)" % [
+        method, uri.path, code, event.duration, resource
       ]
     end
   end
