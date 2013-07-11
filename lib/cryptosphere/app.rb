@@ -1,9 +1,11 @@
 require 'cryptosphere'
-require 'cryptosphere/git'
+require 'cryptosphere/resource'
 
-require 'webmachine'
+require 'cryptosphere/git'
+require 'cryptosphere/resources/asset'
+require 'cryptosphere/resources/home'
+
 require 'webmachine/adapters/cryptosphere_reel'
-require 'uri'
 
 module Cryptosphere
   # Default address of the webapp
@@ -11,12 +13,6 @@ module Cryptosphere
 
   # Default port of the webapp
   APP_PORT = 7890
-
-  # Namespace for all Cryptosphere Webmachine Resources
-  module Resource; end
-
-  require 'cryptosphere/resources/asset'
-  require 'cryptosphere/resources/home'
 
   # The Cryptosphere webapp
   App = Webmachine::Application.new do |app|
@@ -26,8 +22,8 @@ module Cryptosphere
       add ['repos', :repo_id, 'info', 'refs'], Git::Refs
 
       # Base web application routes
-      add ['assets', '*'], Resource::Asset
-      add ['*'], Resource::Home
+      add ['assets', '*'], Resources::Asset
+      add ['*'], Resources::Home
     end
 
     app.configure do |config|
