@@ -7,16 +7,10 @@ module Cryptosphere
       # TODO: roll this up with some other related code somewhere
       SERVICE_HEADER = "001f# service=git-receive-pack"
 
-      def encodings_provided
-        {
-          'gzip'     => :encode_gzip,
-          'identity' => :encode_identity
-        }
-      end
+      provide_content_type 'application/x-git-receive-pack-advertisement' => :to_bytes
 
-      def content_types_provided
-        [['application/x-git-receive-pack-advertisement', :to_bytes]]
-      end
+      provide_encoding 'gzip'     => :encode_gzip
+      provide_encoding 'identity' => :encode_identity
 
       def resource_exists?
         # TODO: check actual git repo name
