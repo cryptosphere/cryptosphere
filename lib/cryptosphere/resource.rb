@@ -32,6 +32,24 @@ module Cryptosphere
       end
     end
 
+    def content_types_accepted
+      types = self.class.content_types_accepted
+      return types if types && !types.empty?
+      super
+    end
+
+    def content_types_provided
+      types = self.class.content_types_provided
+      return types if types && !types.empty?
+      super
+    end
+
+    def encodings_provided
+      encodings = self.class.encodings_provided
+      return encodings if encodings && !encodings.empty?
+      super
+    end
+
     def handle_exception(ex)
       crash "Exception rendering #{self.class}!", ex
     end
