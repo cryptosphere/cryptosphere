@@ -27,10 +27,8 @@ module Cryptosphere
       end
 
       def provide_encoding(encodings)
-        encodings.each do |key, value|
-          self.encodings_provided ||= {}
-          encodings_provided[key] = value
-        end
+        self.encodings_provided ||= {}
+        encodings_provided.merge!(encodings)
       end
     end
 
