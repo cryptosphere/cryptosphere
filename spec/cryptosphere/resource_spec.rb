@@ -2,6 +2,26 @@ require 'spec_helper'
 require 'cryptosphere/resource'
 
 describe Cryptosphere::Resource do
+  context "allowable methods" do
+    it "can be declared with `allow_method'" do
+      klass = Class.new(described_class) do
+        allow_method :get
+        allow_method :post
+      end
+
+      klass.allowed_methods.should eq %W[GET POST]
+    end
+
+    it "can be declared with `allow'" do
+      klass = Class.new(described_class) do
+        allow :get
+        allow :post
+      end
+
+      klass.allowed_methods.should eq %W[GET POST]
+    end
+  end
+
   context "acceptable content types" do
     it "can be declared with `accept_content_type'" do
       klass = Class.new(described_class) do
