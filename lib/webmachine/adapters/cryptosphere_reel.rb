@@ -4,7 +4,6 @@ require 'webmachine/headers'
 require 'webmachine/request'
 require 'webmachine/response'
 require 'webmachine/dispatcher'
-require 'webmachine/chunked_body'
 require 'set'
 
 module Webmachine

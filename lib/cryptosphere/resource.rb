@@ -39,6 +39,12 @@ module Cryptosphere
       end
     end
 
+    def allowed_methods
+      methods = self.class.allowed_methods
+      return methods if methods && !methods.empty?
+      super
+    end
+
     def content_types_accepted
       types = self.class.content_types_accepted
       return types if types && !types.empty?

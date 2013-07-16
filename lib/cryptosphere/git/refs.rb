@@ -7,7 +7,7 @@ module Cryptosphere
       # TODO: roll this up with some other related code somewhere
       SERVICE_HEADER = "001f# service=git-receive-pack"
 
-      provide_content_type 'application/x-git-receive-pack-advertisement' => :to_bytes
+      provide_content_type 'application/x-git-receive-pack-advertisement' => :to_advertisement
 
       provide_encoding 'gzip'     => :encode_gzip
       provide_encoding 'identity' => :encode_identity
@@ -23,7 +23,7 @@ module Cryptosphere
         true
       end
 
-      def to_bytes
+      def to_advertisement
         response = []
         response << SERVICE_HEADER
 
