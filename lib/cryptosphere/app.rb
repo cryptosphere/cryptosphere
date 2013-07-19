@@ -1,6 +1,11 @@
 require 'cryptosphere'
-require 'webmachine'
-require 'webmachine/adapters/reel'
+require 'cryptosphere/resource'
+
+require 'cryptosphere/git'
+require 'cryptosphere/resources/asset'
+require 'cryptosphere/resources/home'
+
+require 'webmachine/adapters/cryptosphere_reel'
 
 module Cryptosphere
   # Default address of the webapp
@@ -9,25 +14,49 @@ module Cryptosphere
   # Default port of the webapp
   APP_PORT = 7890
 
-  # Namespace for all Cryptosphere Webmachine Resources
-  module Resource; end
-
-  require 'cryptosphere/resources/asset'
-  require 'cryptosphere/resources/home'
-
   # The Cryptosphere webapp
   App = Webmachine::Application.new do |app|
     app.routes do
-      add ['assets', '*'], Resource::Asset
+      # Git-related routes
+      # TODO: factor these elsewhere
+      add ['repos', :repo_id, 'info', 'refs'],     Git::Refs
+      add ['repos', :repo_id, 'git-receive-pack'], Git::ReceivePack
 
-      # Point all URIs at the Resource::Home class
-      add ['*'], Resource::Home
+      # Base web application routes
+      add ['assets', '*'], Resources::Asset
+      add ['*'], Resources::Home
     end
 
     app.configure do |config|
       config.ip      = APP_ADDR
       config.port    = APP_PORT
-      config.adapter = :Reel
+      config.adapter = :CryptosphereReel
     end
   end
+
+  class RequestLogger
+    def call(*args)
+      handle_event(Webmachine::Events::InstrumentedEvent.new(*args))
+    end
+
+    def handle_event(event)
+      request  = event.payload[:request]
+      resource = event.payload[:resource]
+      code     = event.payload[:code]
+      uri      = URI(request.uri)
+
+      # Translate extended HTTP verbs via the magical query parameter
+      if request.method == "POST" && request.query['_method']
+        method = request.query['_method']
+      else
+        method = request.method
+      end
+
+      Cryptosphere.logger.info "\"%s %s\" %d %.1fms (%s)" % [
+        method, uri.path, code, event.duration, resource
+      ]
+    end
+  end
+
+  Webmachine::Events.subscribe('wm.dispatch', RequestLogger.new)
 end

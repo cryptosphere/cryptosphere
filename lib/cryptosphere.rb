@@ -2,6 +2,7 @@ require 'cryptosphere/version'
 
 require 'cryptosphere/block'
 require 'cryptosphere/encoding'
+require 'cryptosphere/pkt_line'
 require 'cryptosphere/position'
 
 require 'cryptosphere/heads/read_head'
