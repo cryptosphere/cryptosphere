@@ -6,6 +6,7 @@ gem 'rbnacl',     github: 'cryptosphere/rbnacl'
 gem 'celluloid',    github: 'celluloid/celluloid'
 gem 'celluloid-io', github: 'celluloid/celluloid-io'
 gem 'reel',         github: 'celluloid/reel'
+gem 'http',         github: 'tarcieri/http'
 
 gem 'jruby-openssl', platform: 'jruby'
 
