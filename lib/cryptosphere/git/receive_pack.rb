@@ -1,4 +1,5 @@
 require 'cryptosphere/resource'
+require 'cryptosphere/pkt_line'
 
 module Cryptosphere
   module Git
@@ -24,6 +25,28 @@ module Cryptosphere
       end
 
       def accept_pack
+        # TODO: streaming support!
+        remaining = request.body.to_s
+
+        # TODO: WTF encoding??? :(
+        remaining.force_encoding('ASCII-8BIT')
+
+        if result = PktLine.parse(remaining)
+          data, remaining = result
+        else
+          warn "accept_pack couldn't parse pkt-line!"
+          return false
+        end
+
+        #p data
+
+        flush, remaining = PktLine.parse(remaining)
+        if !flush.nil? || remaining.nil?
+          warn "accept_pack coldn't parse flush packet"
+          return false
+        end
+
+        #p remaining
         true
       end
     end

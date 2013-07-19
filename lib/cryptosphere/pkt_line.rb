@@ -41,7 +41,7 @@ module Cryptosphere
 
         [data, remaining]
       elsif length.zero?
-        return [nil, ""]
+        return [nil, string[4..-1]]
       else
         raise InvalidLength, "length prefix is malformed"
       end

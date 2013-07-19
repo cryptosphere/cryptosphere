@@ -12,6 +12,10 @@ describe Cryptosphere::PktLine do
     described_class.parse("0000").should eq [nil, ""]
   end
 
+  it "returns the remaining data after flush-pkts" do
+    described_class.parse("0000foobar").should eq [nil, "foobar"]
+  end
+
   it "returns the trailing portions of strings" do
     described_class.parse("0005afoobar").should eq ["a", "foobar"]
   end
@@ -26,5 +30,11 @@ describe Cryptosphere::PktLine do
   it "returns nil if more data is needed to parse the string" do
     described_class.parse("0005").should be_nil
     described_class.parse("0006a").should be_nil
+  end
+
+  it "raises InvalidLength for overly long strings" do
+    expect do
+      described_class.parse("fff5" + "A" * 65525)
+    end.to raise_exception(described_class::InvalidLength)
   end
 end
