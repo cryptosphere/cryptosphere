@@ -95,6 +95,7 @@ Suggested Reading
 * [Tahoe - The Least-Authority Filesystem (Tahoe-LAFS)](http://www.laser.dist.unige.it/Repository/IPI-1011/FileSystems/TahoeDFS.pdf)
 * [A Distributed Decentralized Information Storage and Retrieval System (Freenet)](http://freenetproject.org/papers/ddisrs.pdf)
 * [Efficient Sharing of Encrypted Data (GNUnet)](http://grothoff.org/christian/esed.pdf)
+* [Waterken Web: Secure Interoperation Using a Capability Messaging Protocol](http://www.omg.org/news/meetings/workshops/DOCsec-2003/08-1_Close.pdf)
 * [Samsara: Honor Among Thieves in Peer-to-Peer Storage](http://www.eecs.harvard.edu/~mema/courses/cs264/papers/samsara-sosp2003.pdf)
 * [The Sybil Attack](http://research.microsoft.com/pubs/74220/IPTPS2002.pdf)
 * [A Sybilproof Indirect Reciprocity Mechanism for Peer-to-Peer Networks](http://discovery.ucl.ac.uk/14962/1/14962.pdf)
