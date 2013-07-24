@@ -8,7 +8,7 @@
 > without information, you cannot make informed decisions as a public" _-- Bradley Manning_
 
 The Cryptosphere is a global peer-to-peer cryptosystem for publishing and
-securely distributing content anonymously with no central point of failure.
+securely distributing content pseudonymously with no central point of failure.
 The system is openly federated and anyone can join. To ensure quality service
 and prevent abuse, the Cryptosphere uses an integrated cryptographically
 secure reputation system which provides a distributed web of trust.
