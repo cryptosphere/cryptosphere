@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'cryptosphere/git'
+require 'stringio'
 
 describe Cryptosphere::Git::ReceivePack do
   include Webmachine::Test
@@ -9,7 +10,7 @@ describe Cryptosphere::Git::ReceivePack do
 
   it "accepts packs" do
     header "Content-Type", "application/x-git-receive-pack-request"
-    body fixture('packfile')
+    body StringIO.new(fixture('packfile'))
     post "#{example_repo}/git-receive-pack"
 
     response.code.should eq 201
