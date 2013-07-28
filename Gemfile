@@ -5,7 +5,7 @@ gem 'rbnacl',     github: 'cryptosphere/rbnacl', branch: 'add-primitive-names'
 
 gem 'celluloid',    github: 'celluloid/celluloid'
 gem 'celluloid-io', github: 'celluloid/celluloid-io'
-gem 'reel',         github: 'celluloid/reel'
+gem 'reel',         github: 'celluloid/reel', branch: 'request-body-objects'
 gem 'http',         github: 'tarcieri/http'
 
 gem 'jruby-openssl', platform: 'jruby'
