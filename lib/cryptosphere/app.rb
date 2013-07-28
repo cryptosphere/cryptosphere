@@ -5,8 +5,6 @@ require 'cryptosphere/git'
 require 'cryptosphere/resources/asset'
 require 'cryptosphere/resources/home'
 
-require 'webmachine/adapters/cryptosphere_reel'
-
 module Cryptosphere
   # Default address of the webapp
   APP_ADDR = "127.0.0.1"
@@ -30,7 +28,7 @@ module Cryptosphere
     app.configure do |config|
       config.ip      = APP_ADDR
       config.port    = APP_PORT
-      config.adapter = :CryptosphereReel
+      config.adapter = :Reel
     end
   end
 
