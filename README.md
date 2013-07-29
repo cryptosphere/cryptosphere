@@ -101,6 +101,7 @@ Suggested Reading
 * [A Sybilproof Indirect Reciprocity Mechanism for Peer-to-Peer Networks](http://discovery.ucl.ac.uk/14962/1/14962.pdf)
 * [Incentive-driven QoS in peer-to-peer overlays](http://discovery.ucl.ac.uk/19490/1/19490.pdf)
 * [Enforcing collaboration in peer-to-peer routing services](http://www.cs.ox.ac.uk/people/andy.twigg/pubs/2003-kademlia-trust.pdf)
+* [Security Considerations for Peer-to-Peer Distributed Hash Tables](http://and.they.can.be.quite.long.3.4.0.f.0.6.a.0.1.0.0.2.ip6.arpa/~bauerm/names/DHTsec.pdf)
 
 Contributing to the Cryptosphere
 --------------------------------
