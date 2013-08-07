@@ -22,8 +22,11 @@ module Cryptosphere
   # The length prefix specifies a data segment longer than PKT_LEN_MAX
   class LengthError < ArgumentError; end
 
+  # Malformatted data was encountered
+  class FormatError < StandardError; end
+
   # An unexpected message was encountered
-  class ProtocolError < ArgumentError; end
+  class ProtocolError < FormatError; end
 
   # Request to do something we're incapable of
   class CapabilityError < StandardError; end

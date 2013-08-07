@@ -1,4 +1,6 @@
 # Actual git dependencies listed below
+require 'cryptosphere/git/pack_object'
+require 'cryptosphere/git/pack_reader'
 require 'cryptosphere/git/receive_pack'
 require 'cryptosphere/git/refs'
 
