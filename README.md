@@ -96,6 +96,45 @@ following things:
 * Secure anonymous encrypted source control
 * Censorship-proof anonymous web hosting
 
+Important Questions
+-------------------
+
+### Is it "Military Grade™"?
+
+Only if your military understands twisted Edwards curves
+
+### Is it NSA-proof?
+
+Like, totally
+
+### Does it have a lock with a checkmark?
+
+Sure, here you go:
+
+![Checkmarked Lock](http://i.imgur.com/QVJa2oR.png)
+
+### No really, I'm interested in the system's cryptography. What should I read?
+
+Check out the [Data Model][data_model] page in the Wiki for the threat model and
+a specification of the cryptography employed in the system. It's still a work
+in progress and some components of the system aren't specified yet.
+We're going with a specify-then-implement approach, so by all means
+provide feedback on the design, we'd love it.
+
+The [Protocol][protocol] page of the Wiki describes the transport encryption we
+use (CurveCP) and our rationale for this choice.
+
+Cryptographic primitives are supplied by [RbNaCl][rbnacl], a Ruby binding to
+the [Networking and Cryptography (NaCl)][nacl] library by Daniel J. Bernstein.
+The Cryptosphere uses a portable repackaging of NaCl named
+[libsodium][libsodium].
+
+[data_model]: https://github.com/cryptosphere/cryptosphere/wiki/Data-Model
+[protocol]: https://github.com/cryptosphere/cryptosphere/wiki/Protocol
+[rbnacl]: https://github.com/cryptosphere/rbnacl
+[nacl]: http://nacl.cr.yp.to/
+[libsodium]: https://github.com/jedisct1/libsodium
+
 Contributing to the Cryptosphere
 --------------------------------
 
