@@ -38,29 +38,21 @@ We're also on IRC at #cryptosphere on irc.freenode.net
 No, the Cryptosphere is still in an early development stage, and is not yet
 ready for general usage.
 
-Documentation
--------------
-[The Cryptosphere Wiki](https://github.com/cryptosphere/cryptosphere/wiki)
-contains all relevant documentation, including the protocol specification, FAQ,
-and usage notes.
-
-Is it ready yet?
-----------------
+### Can I use it at all yet?
 
 No, but the system is being actively developed. You can view progress here:
 
 [Cryptosphere Trello Board](https://trello.com/b/WMKsvLOW/cryptosphere)
 
-Is there anything I can play with now?
---------------------------------------
+### Is there at least something I can play with?
 
-Not really, but you can check out the work in progress.
+You can see the system's work-in-progress UI if you'd like.
 
 First, make sure that [libsodium](https://github.com/libsodium/libsodium) is available.
 For OS X, it is available via Homebrew: `brew install libsodium`. On other systems, follow
 the [installation instructions](https://github.com/jedisct1/libsodium#installation).
 
-Then set up the cryptosphere:
+Then run the following to clone the repo from Github and set up a local copy.
 
 ```
 git clone https://github.com/cryptosphere/cryptosphere.git
@@ -77,6 +69,12 @@ I, [2012-11-30T21:23:30.059083 #62043]  INFO -- : Starting web UI on http://127.
 ```
 
 You can view the web UI at `http://127.0.0.1:7890`
+
+Documentation
+-------------
+[The Cryptosphere Wiki](https://github.com/cryptosphere/cryptosphere/wiki)
+contains all relevant documentation, including the protocol specification, FAQ,
+and usage notes.
 
 Use Cases
 ---------
