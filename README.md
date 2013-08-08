@@ -42,7 +42,7 @@ ready for general usage.
 
 No, but the system is being actively developed. You can view progress here:
 
-[Cryptosphere Trello Board](https://trello.com/b/WMKsvLOW/cryptosphere)
+* [Cryptosphere Trello Board](https://trello.com/b/WMKsvLOW/cryptosphere)
 
 ### Is there at least something I can play with?
 
