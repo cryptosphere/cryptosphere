@@ -115,6 +115,10 @@ Sure, here you go:
 
 ### No really, I'm interested in the system's cryptography. What should I read?
 
+We realize there's a lot of people making ["interesting" claims][lolclaims] in
+the security world, and that claims alone don't work. We need well-designed,
+well-documented, well-scrutinized open source cryptosystems.
+
 Check out the [Data Model][data_model] page in the Wiki for the threat model and
 a specification of the cryptography employed in the system. It's still a work
 in progress and some components of the system aren't specified yet.
@@ -129,11 +133,17 @@ the [Networking and Cryptography (NaCl)][nacl] library by Daniel J. Bernstein.
 The Cryptosphere uses a portable repackaging of NaCl named
 [libsodium][libsodium].
 
+[lolclaims]: http://unsene.com/blog/2013/06/15/is-most-encryption-broken/#awesm=8fa4f90ed0755accf0cf65b4915d1214
 [data_model]: https://github.com/cryptosphere/cryptosphere/wiki/Data-Model
 [protocol]: https://github.com/cryptosphere/cryptosphere/wiki/Protocol
 [rbnacl]: https://github.com/cryptosphere/rbnacl
 [nacl]: http://nacl.cr.yp.to/
 [libsodium]: https://github.com/jedisct1/libsodium
+
+### Have any fancy pants cryptographers taken a look at the design?
+
+Matt Green glanced over an initial draft of the data model. He thought that
+Blake2bXSalsa20Poly1305 was a funny name.
 
 Contributing to the Cryptosphere
 --------------------------------
