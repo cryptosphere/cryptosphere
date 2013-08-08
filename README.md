@@ -92,6 +92,7 @@ following things:
 Suggested Reading
 -----------------
 
+* [The Tangled Web: A Guide to Securing Modern Web Applications](http://nostarch.com/tangledweb)
 * [Tahoe - The Least-Authority Filesystem (Tahoe-LAFS)](http://www.laser.dist.unige.it/Repository/IPI-1011/FileSystems/TahoeDFS.pdf)
 * [A Distributed Decentralized Information Storage and Retrieval System (Freenet)](http://freenetproject.org/papers/ddisrs.pdf)
 * [Efficient Sharing of Encrypted Data (GNUnet)](http://grothoff.org/christian/esed.pdf)
