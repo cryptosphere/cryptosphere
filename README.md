@@ -38,7 +38,7 @@ We're also on IRC at #cryptosphere on irc.freenode.net
 No, the Cryptosphere is still in an early development stage, and is not yet
 ready for general usage.
 
-### Can I use it at all yet?
+### Can I use it yet?
 
 No, but the system is being actively developed. You can view progress here:
 
