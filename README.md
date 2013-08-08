@@ -44,6 +44,13 @@ Documentation
 contains all relevant documentation, including the protocol specification, FAQ,
 and usage notes.
 
+Is it ready yet?
+----------------
+
+No, but the system is being actively developed. You can view progress here:
+
+[Cryptosphere Trello Board](https://trello.com/b/WMKsvLOW/cryptosphere)
+
 Is there anything I can play with now?
 --------------------------------------
 
