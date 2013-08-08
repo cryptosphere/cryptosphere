@@ -96,21 +96,6 @@ following things:
 * Secure anonymous encrypted source control
 * Censorship-proof anonymous web hosting
 
-Suggested Reading
------------------
-
-* [The Tangled Web: A Guide to Securing Modern Web Applications](http://nostarch.com/tangledweb)
-* [Tahoe - The Least-Authority Filesystem (Tahoe-LAFS)](http://www.laser.dist.unige.it/Repository/IPI-1011/FileSystems/TahoeDFS.pdf)
-* [A Distributed Decentralized Information Storage and Retrieval System (Freenet)](http://freenetproject.org/papers/ddisrs.pdf)
-* [Efficient Sharing of Encrypted Data (GNUnet)](http://grothoff.org/christian/esed.pdf)
-* [Waterken Web: Secure Interoperation Using a Capability Messaging Protocol](http://www.omg.org/news/meetings/workshops/DOCsec-2003/08-1_Close.pdf)
-* [Samsara: Honor Among Thieves in Peer-to-Peer Storage](http://www.eecs.harvard.edu/~mema/courses/cs264/papers/samsara-sosp2003.pdf)
-* [The Sybil Attack](http://research.microsoft.com/pubs/74220/IPTPS2002.pdf)
-* [A Sybilproof Indirect Reciprocity Mechanism for Peer-to-Peer Networks](http://discovery.ucl.ac.uk/14962/1/14962.pdf)
-* [Incentive-driven QoS in peer-to-peer overlays](http://discovery.ucl.ac.uk/19490/1/19490.pdf)
-* [Enforcing collaboration in peer-to-peer routing services](http://www.cs.ox.ac.uk/people/andy.twigg/pubs/2003-kademlia-trust.pdf)
-* [Security Considerations for Peer-to-Peer Distributed Hash Tables](http://and.they.can.be.quite.long.3.4.0.f.0.6.a.0.1.0.0.2.ip6.arpa/~bauerm/names/DHTsec.pdf)
-
 Contributing to the Cryptosphere
 --------------------------------
 
