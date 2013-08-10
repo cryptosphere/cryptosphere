@@ -114,7 +114,7 @@ Like, totally
 
 Sure, here you go:
 
-![Checkmarked Lock](http://i.imgur.com/QVJa2oR.png)
+![Checkmarked Lock](http://i.imgur.com/dwA0Ffi.png)
 
 ### No really, I'm interested in the system's cryptography. What should I read?
 
