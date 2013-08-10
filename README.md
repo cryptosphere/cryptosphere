@@ -21,11 +21,15 @@ distributed version control system.
 For more information, please see the [project philosophy][philosophy]
 page in the wiki.
 
-Like the Cryptosphere? [Join the Google Group][google group]
+---
+
+Like the Cryptosphere? [Join the Google Group][google group]. To join by e-mail,
+send a message to: [cryptosphere+subscribe@googlegroups.com][subscribe]
 We're also on IRC at #cryptosphere on irc.freenode.net
 
 [philosophy]:   https://github.com/cryptosphere/cryptosphere/wiki/Philosophy
 [google group]: https://groups.google.com/group/cryptosphere
+[subscribe]:    mailto:cryptosphere+subscribe@googlegroups.com
 
 ### Is it any good?
 
