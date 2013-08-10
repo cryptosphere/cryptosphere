@@ -10,6 +10,10 @@ module Cryptosphere
     class PackReader
       PACK_SIGNATURE = "PACK"
 
+      # Sanity limit on object header size. This provides 60-bits of length,
+      # or 1 exabyte of data. It is considered sufficient for today's purposes
+      HEADER_SANITY_LIMIT = 9
+
       # Return a pack reader that will parse successive objects in a purely
       # streaming manner, allowing packs to be streamed off the network.
       #
@@ -26,23 +30,57 @@ module Cryptosphere
 
         @input = input
         @total_objects = @remaining_objects = total_objects
+        @buffer = ""
       end
 
       # Read the next object from the pack
       #
       # @return [Cryptosphere::Git::PackObject] streamable pack object
       def next_object
-        buffer = ""
-
         begin
-          chunk = @input.readpartial
-          raise FormatError, "couldn't parse object header" unless chunk && chunk.length > 0
+          fill_buffer
+        rescue EOFError
+          raise FormatError, "couldn't parse object header" 
+        end
 
-          buffer << chunk
-          pack_object = PackObject.parse_header(buffer)
-        end until pack_object
+        byte = @buffer[0].ord
 
-        pack_object
+        more   = byte >> 7 & 0x1
+        type   = byte >> 4 & 0x7
+        length = byte & 0xf
+
+        consumed = 1
+
+        while more == 1
+          raise FormatError, "object header too long" if consumed >= HEADER_SANITY_LIMIT
+
+          if consumed >= @buffer.length
+            begin
+              fill_buffer
+            rescue EOFError
+              raise FormatError, "couldn't parse object header" 
+            end
+          end
+
+          byte   = @buffer[consumed].ord
+          more   = byte >> 7 & 0x1
+          length += byte & 0x7f
+
+          consumed += 1
+        end
+
+        PackObject.new(self, type, length)
+      end
+
+    private
+
+      # Add some data to the buffer from the input
+      #
+      # @return [String] newly filled buffer
+      def fill_buffer
+        chunk = @input.readpartial
+        raise EOFError, "end of file encountered" unless chunk && chunk.length > 0
+        @buffer << chunk
       end
     end
   end
