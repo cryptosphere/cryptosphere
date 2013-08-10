@@ -16,22 +16,23 @@ module Cryptosphere
       # @param [String] buffer to be processed
       # @return [PackObject, nil] PackObject or nil if more data is needed
       def self.parse_header(buffer)
-        byte     = buffer[0].unpack("B8").first
+        byte     = buffer[0].ord
         consumed = 1
 
-        more   = byte[0,1]
-        type   = Integer(byte[1,3], 2)
-        length = Integer(byte[4,4], 2)
+        more   = byte >> 7 & 0x1
+        type   = byte >> 4 & 0x7
+        length = byte & 0xf
 
-        while more == "1"
+        while more == 1
           raise FormatError, "object header too long" if consumed >= HEADER_SANITY_LIMIT
 
           # Need more data
           return nil if consumed >= buffer.length
 
-          byte = buffer[consumed].unpack("B8").first
-          more = byte[0,1]
-          length   += Integer(byte[1,7], 2)
+          byte   = buffer[consumed].ord
+          more   = byte >> 7 & 0x1
+          length += byte & 0x7f
+
           consumed += 1
         end
 

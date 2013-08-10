@@ -3,7 +3,8 @@ require 'cryptosphere/git'
 require 'stringio'
 
 describe Cryptosphere::Git::PackReader do
-  subject { described_class.new(StringIO.new(fixture('packfile'))) }
+  let(:stringio) { StringIO.new(fixture('packfile')).set_encoding("ASCII-8BIT") }
+  subject { described_class.new(stringio) }
 
   it "returns the next object in the pack" do
     obj = subject.next_object
