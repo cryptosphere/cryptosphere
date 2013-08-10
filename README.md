@@ -24,7 +24,7 @@ page in the wiki.
 ---
 
 Like the Cryptosphere? [Join the Google Group][google group]. To join by e-mail,
-send a message to: [cryptosphere+subscribe@googlegroups.com][subscribe]
+send a message to: [cryptosphere+subscribe@googlegroups.com][subscribe].
 We're also on IRC at #cryptosphere on irc.freenode.net
 
 [philosophy]:   https://github.com/cryptosphere/cryptosphere/wiki/Philosophy
