@@ -28,6 +28,9 @@ module Cryptosphere
   # An unexpected message was encountered
   class ProtocolError < FormatError; end
 
+  # We are not in the correct state to perform the given action
+  class StateError < StandardError; end
+
   # Request to do something we're incapable of
   class CapabilityError < StandardError; end
 

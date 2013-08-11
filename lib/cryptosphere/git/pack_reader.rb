@@ -31,12 +31,18 @@ module Cryptosphere
         @input = input
         @total_objects = @remaining_objects = total_objects
         @buffer = ""
+        @state  = :object_header
+        @object_length = nil
       end
 
       # Read the next object from the pack
       #
       # @return [Cryptosphere::Git::PackObject] streamable pack object
       def next_object
+        unless @state == :object_header
+          raise StateError, "not ready to read a new object"
+        end
+
         begin
           fill_buffer
         rescue EOFError
@@ -69,7 +75,40 @@ module Cryptosphere
           consumed += 1
         end
 
+        @state = :object_body
+        @object_remaining = length
         PackObject.new(self, type, length)
+      end
+
+      # Read raw data from a pack object if we're in the correct state
+      #
+      # @raise [Cryptosphere::StateError] not inside a packed object's body
+      #
+      # @return [Cryptosphere::Git::PackObject] streamable pack object
+      def readpartial(length = nil)
+        puts "reading object body"
+        raise StateError, "not reading object body" if @state != :object_body
+
+        length ||= @object_remaining
+
+        result = if @buffer && !@buffer.empty?
+                   if length < @buffer.length
+                     @object_remaining -= length
+                     @buffer.slice!(0, length)
+                   else
+                     buffer = @buffer
+                     @buffer = ""
+                     @object_remaining -= buffer.length
+                     buffer
+                   end
+                 else
+                   buffer = @input.readpartial(length)
+                   @object_remaining -= buffer.length
+                   buffer
+                 end
+
+        @state = :object_header if @object_remaining == 0
+        result
       end
 
     private

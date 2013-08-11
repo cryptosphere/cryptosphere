@@ -19,6 +19,36 @@ module Cryptosphere
         @reader = reader
         @type   = type
         @length = length
+
+        @body = nil
+      end
+
+      # Read data from a PackObject
+      #
+      # @param [Fixnum] length to read (max)
+      #
+      # @return [String] uncompressed data from this object
+      def readpartial(length = nil)
+        @reader.readpartial(length)
+      end
+
+      # Read the entirety of a PackObject as a String
+      #
+      # @return [String] body of this PackObject as a String
+      def body
+        @body ||= begin
+          body = ""
+          remaining = @length
+
+          while remaining > 0
+            chunk = readpartial(remaining)
+            raise ProtocolError, "couldn't read entire PackObject" unless chunk
+            remaining -= chunk.length
+            body << chunk
+          end
+          raise "body was an unexpected length!" unless body.length == @length
+          body
+        end
       end
     end
   end
