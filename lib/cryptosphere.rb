@@ -1,5 +1,8 @@
 require 'cryptosphere/version'
 
+require 'celluloid'
+require 'lattice'
+
 require 'cryptosphere/block'
 require 'cryptosphere/encoding'
 require 'cryptosphere/pkt_line_reader'

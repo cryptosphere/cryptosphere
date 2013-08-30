@@ -1,9 +1,8 @@
-require 'cryptosphere/resource'
 require 'cryptosphere/pkt_line_reader'
 
 module Cryptosphere
   module Git
-    class ReceivePack < Resource
+    class ReceivePack < Lattice::Resource
       allow :get, :head, :post, :options
 
       accept_content_type  'application/x-git-receive-pack-request' => :accept_pack

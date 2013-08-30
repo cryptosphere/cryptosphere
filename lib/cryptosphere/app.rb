@@ -1,5 +1,4 @@
 require 'cryptosphere'
-require 'cryptosphere/resource'
 
 require 'cryptosphere/git'
 require 'cryptosphere/resources/asset'
