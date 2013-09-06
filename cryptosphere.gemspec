@@ -3,7 +3,7 @@ require File.expand_path('../lib/cryptosphere/version', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.authors       = ["Tony Arcieri"]
-  gem.email         = ["tony.arcieri@gmail.com"]
+  gem.email         = ["bascule@gmail.com"]
   gem.description   = "A decentralized globally distributed peer-to-peer data archive"
   gem.summary       = "The Cryptosphere is a P2P cryptosystem for publishing and securely distributing content anonymously with no central point of failure"
   gem.homepage      = "http://github.com/tarcieri/cryptosphere"
