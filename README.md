@@ -5,7 +5,7 @@
 [![Coverage Status](https://coveralls.io/repos/cryptosphere/cryptosphere/badge.png?branch=master)](https://coveralls.io/r/cryptosphere/cryptosphere)
 
 > "I want people to see the truth... regardless of who they are... because
-> without information, you cannot make informed decisions as a public" _-- Bradley Manning_
+> without information, you cannot make informed decisions as a public" _-- Chelsea Elizabeth Manning_
 
 The Cryptosphere is a global peer-to-peer cryptosystem for publishing and
 securely distributing content pseudonymously with no central point of failure.
