@@ -53,7 +53,7 @@ module Cryptosphere
       # ciphertexts under the same key which are not the ciphertext we're looking for
       unless options.fetch(:skip_id_check, false)
         expected_id = DEFAULT_PRIMITIVE.derive_key(ciphertext, HASH_KEY)
-        raise ForgeryError, "forged block!" unless Crypto::Util.verify32(@id, expected_id)
+        raise ForgeryError, "forged block!" unless RbNaCl::Util.verify32(@id, expected_id)
       end
 
       @key = options.fetch(:key, nil)

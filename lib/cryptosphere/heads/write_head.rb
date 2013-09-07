@@ -17,14 +17,14 @@ module Cryptosphere
       # @param seed [String] (optional) seed value to generate WriteHead from
       # @return [Cryptosphere::WriteHead] newly generated WriteHead object
       def self.generate(seed = Cryptosphere.random_bytes(64))
-        hash = Crypto::Hash.blake2b(seed, key: URI_SCHEME)
+        hash = RbNaCl::Hash.blake2b(seed, key: URI_SCHEME)
         new("#{URI_SCHEME}:#{Encoding.encode(hash) + '0'}")
       end
 
       # Create a Cryptosphere::WriteHead from a crypto.writehead URI
       #
       # @param uri [String] crypt.writehead URI to initialize from
-      # @return [Crypto::WriteHead] newly initialized write head object
+      # @return [Cryptosphere::Heads::WriteHead] newly initialized write head object
       def initialize(uri)
         uri = URI(uri) unless uri.is_a? URI # coerce to a URI
         scheme, authority = uri.scheme, uri.opaque
@@ -41,7 +41,7 @@ module Cryptosphere
         # Replace with a constant or method for the length
         raise ArgumentError, "invalid length for #{URI_SCHEME}: #{keys.length}" if keys.length != 64
 
-        @signing_key   = Crypto::SigningKey.new(keys[0,32])
+        @signing_key   = RbNaCl::SigningKey.new(keys[0,32])
         @symmetric_key = keys[32,32]
 
         # Calculate this lazily upon request

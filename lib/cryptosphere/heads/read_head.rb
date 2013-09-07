@@ -13,7 +13,7 @@ module Cryptosphere
       # Create a Cryptosphere::ReadHead from a crypto.readhead URI
       #
       # @param uri [String] crypt.readhead URI to initialize from
-      # @return [Crypto::ReadHead] newly initialized read head object
+      # @return [RbNaCl::ReadHead] newly initialized read head object
       def initialize(uri)
         uri = URI(uri) unless uri.is_a? URI # coerce to a URI
         scheme, authority = uri.scheme, uri.opaque
@@ -30,14 +30,14 @@ module Cryptosphere
         # Replace with a constant or method for the length
         raise ArgumentError, "invalid length for #{URI_SCHEME}: #{keys.length}" if keys.length != 64
 
-        @verify_key    = Crypto::SigningKey.new(keys[0,32])
+        @verify_key    = RbNaCl::SigningKey.new(keys[0,32])
         @symmetric_key = keys[32,64]
       end
 
       # Read a position, returning a decrypted position object
       #
       # @param position [String, Cryptosphere::Position] position object
-      # @return [Crypto::Position] position object with decrypted URI
+      # @return [RbNaCl::Position] position object with decrypted URI
       def read(position, timestamp = nil)
         position = Position.new(position) unless position.is_a? Position
 

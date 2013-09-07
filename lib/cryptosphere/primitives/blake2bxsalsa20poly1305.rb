@@ -37,7 +37,7 @@ module Cryptosphere
       module_function
 
       # Fixed nonce to use for all blocks (since they each have a unique key)
-      NONCE = "\0" * Crypto::SecretBox.nonce_bytes
+      NONCE = "\0" * RbNaCl::SecretBox.nonce_bytes
 
       # Derive an encryption key using Blake2b in keyed mode. To achieve
       # convergent encryption, we derive keys from hashes of the plaintext,
@@ -47,9 +47,9 @@ module Cryptosphere
       # @param convergence_secret [String] optional secret value
       # @return [String] derived encryption key
       def derive_key(plaintext, convergence_secret)
-        Crypto::Hash.blake2b(
+        RbNaCl::Hash.blake2b(
           plaintext,
-          digest_size: Crypto::SecretBox.key_bytes,
+          digest_size: RbNaCl::SecretBox.key_bytes,
           key: convergence_secret
         )
       end
@@ -61,7 +61,7 @@ module Cryptosphere
       # @param plaintext [String] plaintext to be encrypted with the given key
       # @return [String] ciphertext for the given inputs
       def encrypt(key, plaintext)
-        Crypto::SecretBox.new(key).encrypt(NONCE, plaintext)
+        RbNaCl::SecretBox.new(key).encrypt(NONCE, plaintext)
       end
 
       # Decrypt a block using the given key
@@ -70,7 +70,7 @@ module Cryptosphere
       # @param ciphertext [String] ciphertext to be decrypted
       # @return [String] decrypted plaintext
       def decrypt(key, ciphertext)
-        Crypto::SecretBox.new(key).decrypt(NONCE, ciphertext)
+        RbNaCl::SecretBox.new(key).decrypt(NONCE, ciphertext)
       end
     end
   end

@@ -12,11 +12,11 @@ require 'cryptosphere/cli'
 
 module Cryptosphere
   # Size of symmetric keys in bytes (32 bytes, 256-bits)
-  SECRET_KEY_BYTES = Crypto::SecretBox::KEYBYTES
+  SECRET_KEY_BYTES = RbNaCl::SecretBox::KEYBYTES
 
   # Secure random data source
   def self.random_bytes(size)
-    Crypto::Random.random_bytes(size)
+    RbNaCl::Random.random_bytes(size)
   end
 
   def self.logger
