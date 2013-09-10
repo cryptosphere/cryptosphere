@@ -142,6 +142,9 @@ The Cryptosphere uses a portable repackaging of NaCl named
 
 ### Is it full of NSA backdoors?
 
+Some research into the author(s) of this project should hopefully reveal we
+aren't fans of the NSA.
+
 We have, as much as possible, attempted to choose cryptographic primitives that
 are beyond reproach when it comes to the possibility of NSA influence:
 
