@@ -152,9 +152,16 @@ are beyond reproach when it comes to the possibility of NSA influence:
 ![No NIST](http://i.imgur.com/HSxeAmp.png)
 
 The design of RbNaCl's primitives is completely free from NIST (and by
-association, NSA) influence, with the exception of the Poly1305 MAC, which uses
-AES as a replaceable part of its implementation. All of the algorithms in NaCl
-were designed by Dan Bernstein and his collaborators.
+association, NSA) influence, with the following minor exceptions:
+
+* The Poly1305 MAC, used for authenticating integrity of ciphertexts, uses AES
+  as a replaceable component
+* The Ed25519 digital signature algorithm uses SHA-512 for both key derivation
+  and computing message digests
+
+Otherwise, all of the algorithms in NaCl which are used by the Cryptosphere
+were designed by Dan Bernstein and his collaborators, with the exception of
+the Blake2 hash function, which was designed by Jean-Philippe Aumasson.
 
 The design choices in NaCl, particularly in regard to the Curve25519
 Diffie-Hellman function, ephasize security (whereas [NIST curves emphasize
