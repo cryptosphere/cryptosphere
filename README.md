@@ -107,10 +107,6 @@ Important Questions
 
 Only if your military understands twisted Edwards curves
 
-### Is it NSA-proof?
-
-Like, totally
-
 ### Does it have a lock with a checkmark?
 
 Sure, here you go:
@@ -143,6 +139,36 @@ The Cryptosphere uses a portable repackaging of NaCl named
 [rbnacl]: https://github.com/cryptosphere/rbnacl
 [nacl]: http://nacl.cr.yp.to/
 [libsodium]: https://github.com/jedisct1/libsodium
+
+### Is it full of NSA backdoors?
+
+We have, as much as possible, attempted to choose cryptographic primitives that
+are beyond reproach when it comes to the possibility of NSA influence:
+
+![No NIST](http://i.imgur.com/HSxeAmp.png)
+
+The design of RbNaCl's primitives is completely free from NIST (and by
+association, NSA) influence, with the exception of the Poly1305 MAC, which uses
+AES as a replaceable part of its implementation. All of the algorithms in NaCl
+were designed by Dan Bernstein and his collaborators.
+
+The design choices in NaCl, particularly in regard to the Curve25519
+Diffie-Hellman function, ephasize security (whereas [NIST curves emphasize
+"performance" at the cost of security][nist-security-dangers]), and "magic
+constants" in NaCl are picked by theorems designed to maximize security.
+The same cannot be said of NIST curves, where the specific origins of certain
+constants are not described by the standards and may be subject to malicious
+influence by the NSA.
+
+It is the opinion of this library's authors that Dan Bernstein is unlikely to be
+subject to NSA influence (although we have no way of actually knowing this).
+
+Dan Bernstein's designs have been well-scrutinized both as part of the [ESTREAM
+Project](https://en.wikipedia.org/wiki/ESTREAM) and the cryptographic community
+as a whole. And despite the emphasis on higher security, NaCl's primitives are
+faster across-the-board than most implementations of the NIST standards.
+
+[nist-security-dangers]: http://www.hyperelliptic.org/tanja/vortraege/20130531.pdf
 
 ### Have any fancy pants cryptographers taken a look at the design?
 
