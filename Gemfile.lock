@@ -8,14 +8,14 @@ GIT
 
 GIT
   remote: git://github.com/celluloid/celluloid.git
-  revision: a4a0385a21d1f18ffdbabb376e1c9ef1167d7978
+  revision: 5963b674a00bdc9da1ba0bbdc4ae582f36860d01
   specs:
     celluloid (0.16.0.pre)
       timers (~> 1.1.0)
 
 GIT
   remote: git://github.com/celluloid/lattice.git
-  revision: 812bede90ef18af22572cb1ea43c7a00890308a0
+  revision: 11e6dac206f44a2348cdd51c1a3a9f00a4d466e1
   specs:
     lattice (0.1.0)
       activesupport (~> 4.0.0)
@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: git://github.com/celluloid/reel.git
-  revision: 37aa6740925ebdf9c3bd9243cc6b984e722c46d3
+  revision: de74147f025673ef336950824b61e8d71e7fb043
   specs:
     reel (0.5.0.pre)
       celluloid (>= 0.15.1)
