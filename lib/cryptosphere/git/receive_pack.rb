@@ -30,8 +30,11 @@ module Cryptosphere
 
         puts "Header: #{header.inspect}"
 
-        pack_reader = PackReader.new(request.body)
-        p pack_reader.next_object
+        PackReader.new(request.body).each do |pack_object|
+          body = pack_object.body
+          puts "*** Got a type-#{pack_object.type} object (expected #{pack_object.length}, actual #{pack_object.length})"
+          p body
+        end
       end
     end
   end
