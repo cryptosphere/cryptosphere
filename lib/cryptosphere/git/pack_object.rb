@@ -43,7 +43,7 @@ module Cryptosphere
           return
         end
 
-        chunk = @reader.readpartial(length || 4096)
+        chunk = @reader.readpartial(length)
         @inflater.inflate(chunk)
       end
 

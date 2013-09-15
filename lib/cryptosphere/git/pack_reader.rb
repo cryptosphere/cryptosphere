@@ -17,6 +17,9 @@ module Cryptosphere
       # or 1 exabyte of data. It is considered sufficient for today's purposes
       LENGTH_PREFIX_LIMIT = 9
 
+      # How much data to try to work on at a time in the buffer
+      BUFFER_SIZE = 16384
+
       # Return a pack reader that will parse successive objects in a purely
       # streaming manner, allowing packs to be streamed off the network.
       #
@@ -84,8 +87,9 @@ module Cryptosphere
       # @raise [Cryptosphere::StateError] not inside a packed object's body
       #
       # @return [String] compressed pack object data
-      def readpartial(length)
+      def readpartial(length = nil)
         raise StateError, "not reading object body" if @state != :object_body
+        length ||= BUFFER_SIZE
 
         if @buffer && !@buffer.empty?
           if length < @buffer.length
