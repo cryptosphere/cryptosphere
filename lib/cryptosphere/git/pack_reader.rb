@@ -79,11 +79,11 @@ module Cryptosphere
         end
       end
 
-      # Read raw data from a pack object if we're in the correct state
+      # Read compressed data from a pack object if we're in the correct state
       #
       # @raise [Cryptosphere::StateError] not inside a packed object's body
       #
-      # @return [Cryptosphere::Git::PackObject] streamable pack object
+      # @return [String] compressed pack object data
       def readpartial(length)
         raise StateError, "not reading object body" if @state != :object_body
 
@@ -120,6 +120,7 @@ module Cryptosphere
       # Ensure the buffer contains at least the given amount of input
       #
       # @param [Fixnum] size of buffer when finished
+      #
       # @return [String] newly filled buffer
       def fill_buffer(size = nil)
         return if size.nil? && !buffer.empty?
