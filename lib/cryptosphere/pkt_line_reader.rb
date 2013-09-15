@@ -28,7 +28,7 @@ module Cryptosphere
     def read
       # Obtain the "pkt-len"
       prefix = @input.read(4)
-      raise ProtocolError, "invalid pkt-line prefix: #{prefix}" unless prefix[/^[0-9a-f]{4}/]
+      raise ProtocolError, "invalid pkt-line prefix: #{prefix.inspect}" unless prefix && prefix[/^[0-9a-f]{4}/]
 
       length = Integer(prefix, 16)
       return nil if length.zero?
