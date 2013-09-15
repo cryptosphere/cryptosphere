@@ -26,14 +26,16 @@ module Cryptosphere
       def accept_pack
         line_reader = PktLineReader.new(request.body)
         header = line_reader.read
-        raise ProtocolError, "no flush-pkt in header" unless line_reader.read.nil?
-
-        puts "Header: #{header.inspect}"
+        if header
+          raise ProtocolError, "no flush-pkt in header" unless line_reader.read.nil?
+          debug "Header: #{header.inspect}"
+        else
+          debug "Huh, no receive pack header, just a flush-pkt?"
+        end
 
         PackReader.new(request.body).each do |pack_object|
           body = pack_object.body
-          puts "*** Got a type-#{pack_object.type} object (expected #{pack_object.length}, actual #{pack_object.length})"
-          p body
+          debug "*** Got a type-#{pack_object.type} object (length #{pack_object.length} [#{pack_object.length}])\n#{body}"
         end
       end
     end
