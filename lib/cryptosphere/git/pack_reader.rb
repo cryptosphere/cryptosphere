@@ -8,11 +8,14 @@ module Cryptosphere
     # PackReader implements a streaming reader for Git's pack format, used to
     # decode and process incoming packs on-the-fly.
     class PackReader
+      include Enumerable
+
+      # How we identify we're at the beginning of a pack file
       PACK_SIGNATURE = "PACK"
 
       # Sanity limit on object header size. This provides 60-bits of length,
       # or 1 exabyte of data. It is considered sufficient for today's purposes
-      SIZE_PREFIX_LIMIT = 9
+      LENGTH_PREFIX_LIMIT = 9
 
       # Return a pack reader that will parse successive objects in a purely
       # streaming manner, allowing packs to be streamed off the network.
@@ -32,7 +35,6 @@ module Cryptosphere
         @total_objects = @remaining_objects = total_objects
         @buffer = ""
         @state  = :object_header
-        @object_length = nil
       end
 
       # Read the next object from the pack
@@ -40,34 +42,41 @@ module Cryptosphere
       # @return [Cryptosphere::Git::PackObject] streamable pack object
       def next_object
         unless @state == :object_header
-          raise StateError, "not ready to read a new object"
+          raise StateError, "not ready to read a new object (in #{@state.inspect} state)"
         end
 
         fill_buffer(1)
-        size_prefix_bytes = 1
+        length_prefix_bytes = 1
 
-        byte  = @buffer.bytes[0].ord
-        size  = byte & 0xf
-        type  = (byte >> 4) & 7
-        shift = 4
+        byte   = @buffer.bytes.first.ord
+        length = byte & 0xf
+        type   = (byte >> 4) & 7
+        shift  = 4
 
         while byte & 0x80 != 0
-          raise FormatError, "object header too long" if size_prefix_bytes >= SIZE_PREFIX_LIMIT
+          raise FormatError, "object header too long" if length_prefix_bytes >= LENGTH_PREFIX_LIMIT
 
-          size_prefix_bytes += 1
-          fill_buffer(size_prefix_bytes)
-          byte = @buffer.bytes[size_prefix_bytes - 1].ord
-          size |= ((byte & 0x7f) << shift)
+          length_prefix_bytes += 1
+          fill_buffer(length_prefix_bytes)
+          byte = @buffer.bytes.to_a[length_prefix_bytes - 1].ord
+          length |= ((byte & 0x7f) << shift)
           shift += 7
         end
 
         # Discard the length prefix
-        @buffer.slice!(0, size_prefix_bytes)
+        @buffer.slice!(0, length_prefix_bytes)
+        @state = :object_body if length > 0
 
-        @state = :object_body
-        @object_remaining = size
+        PackObject.new(self, type, length)
+      end
 
-        PackObject.new(self, type, size)
+      # Iterate through all of the objects in the pack
+      #
+      # @return [nil]
+      def each
+        while @remaining_objects > 0
+          yield next_object
+        end
       end
 
       # Read raw data from a pack object if we're in the correct state
@@ -75,27 +84,37 @@ module Cryptosphere
       # @raise [Cryptosphere::StateError] not inside a packed object's body
       #
       # @return [Cryptosphere::Git::PackObject] streamable pack object
-      def readpartial(length = nil)
+      def readpartial(length)
         raise StateError, "not reading object body" if @state != :object_body
-
-        length ||= @object_remaining
 
         if @buffer && !@buffer.empty?
           if length < @buffer.length
             @object_remaining -= length
-            buffer = @buffer.slice!(0, length)
+            @buffer.slice!(0, length)
           else
             buffer = @buffer
             @buffer = ""
-            @object_remaining -= buffer.length
+            buffer
           end
         else
-          buffer = @input.readpartial(length)
-          @object_remaining -= buffer.length
+          @input.readpartial(length)
         end
+      end
 
-        @state = :object_header if @object_remaining == 0
-        buffer
+      # Inform the reader we've finished reading a pack object, and return any
+      # unprocessed data back to the buffer
+      # 
+      # @param [String] data we'd like to return to the pack reader's buffer
+      #
+      # @return [nil]
+      def finish_object(remaining_data)
+        @buffer.prepend(remaining_data) if remaining_data
+        @remaining_objects -= 1
+        if @remaining_objects > 0
+          @state = :object_header
+        else
+          @state = :eof
+        end
       end
 
       # Ensure the buffer contains at least the given amount of input

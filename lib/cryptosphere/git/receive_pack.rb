@@ -24,14 +24,14 @@ module Cryptosphere
       end
 
       def accept_pack
-        pl_reader = PktLineReader.new(request.body)
-        header = pl_reader.read
-        raise ProtocolError, "no flush-pkt in header" unless pl_reader.read.nil?
+        line_reader = PktLineReader.new(request.body)
+        header = line_reader.read
+        raise ProtocolError, "no flush-pkt in header" unless line_reader.read.nil?
 
         puts "Header: #{header.inspect}"
 
-        pk_reader = PackReader.new(request.body)
-        p pk_reader.next_object
+        pack_reader = PackReader.new(request.body)
+        p pack_reader.next_object
       end
     end
   end

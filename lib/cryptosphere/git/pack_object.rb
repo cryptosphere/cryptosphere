@@ -21,10 +21,11 @@ module Cryptosphere
         @reader = reader
         @type   = type
         @length = length
+        @read   = 0
         @body   = nil
         @closed = false
 
-        @inflater = Zlib::Inflate.new
+        @inflater  = Zlib::Inflate.new
       end
 
       # Read data from a PackObject
@@ -35,12 +36,15 @@ module Cryptosphere
       def readpartial(length = nil)
         raise StateError, "already closed" if @closed
 
-        if chunk = @reader.readpartial(length)
-          @inflater.inflate(chunk)
-        else
+        if @inflater.total_out == @length
+          # Leftover data
+          @reader.finish_object(@inflater.finish)
           @closed = true
-          @inflater.finish
+          return
         end
+
+        chunk = @reader.readpartial(length || 4096)
+        @inflater.inflate(chunk)
       end
 
       # Read the entirety of a PackObject as a String
@@ -49,15 +53,9 @@ module Cryptosphere
       def body
         @body ||= begin
           body = ""
-          remaining = @length
-
-          while remaining > 0
-            chunk = readpartial(remaining)
-            raise ProtocolError, "couldn't read entire PackObject" unless chunk
-            remaining -= chunk.length
+          while chunk = readpartial
             body << chunk
           end
-          raise ProtocolError, "body was an unexpected length!" unless body.length == @length
           body
         end
       end
