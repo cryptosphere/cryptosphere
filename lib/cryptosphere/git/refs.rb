@@ -1,8 +1,6 @@
-require 'cryptosphere/resource'
-
 module Cryptosphere
   module Git
-    class Refs < Resource
+    class Refs < Lattice::Resource
       # Pack data header for the HTTP-based git-receive-pack service
       # TODO: roll this up with some other related code somewhere
       SERVICE_HEADER = "001f# service=git-receive-pack"
@@ -32,6 +30,8 @@ module Cryptosphere
         response << [
           "000000880000000000000000000000000000000000000000",
           "capabilities^{}\0",
+
+          # TODO: We don't really have any of these capabilities yet ;(
           "report-status",
           "delete-refs",
           "side-band-64k",

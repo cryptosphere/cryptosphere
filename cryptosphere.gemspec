@@ -16,12 +16,10 @@ Gem::Specification.new do |gem|
   gem.version       = Cryptosphere::VERSION
 
   gem.add_runtime_dependency "celluloid"
-  gem.add_runtime_dependency "reel"
-  gem.add_runtime_dependency "webmachine"
+  gem.add_runtime_dependency "lattice"
   gem.add_runtime_dependency "thor"
   gem.add_runtime_dependency "rbnacl"
   gem.add_runtime_dependency "base32"
-  gem.add_runtime_dependency "activesupport", "~> 4.0.0"
 
   gem.add_development_dependency "rake"
   gem.add_development_dependency "rspec"

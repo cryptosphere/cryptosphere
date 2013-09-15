@@ -1,8 +1,6 @@
-require 'cryptosphere/resource'
-
 module Cryptosphere
   module Resources
-    class Asset < Resource
+    class Asset < Lattice::Resource
       ASSET_ROOT = File.expand_path("../../assets", __FILE__)
       FILE_LIST  = Dir[File.join(ASSET_ROOT, "**", "*")].map { |f| f.sub(/^#{ASSET_ROOT}\//, '') }
 

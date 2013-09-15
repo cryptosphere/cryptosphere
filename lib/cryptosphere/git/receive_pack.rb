@@ -1,9 +1,8 @@
-require 'cryptosphere/resource'
-require 'cryptosphere/pkt_line'
+require 'cryptosphere/pkt_line_reader'
 
 module Cryptosphere
   module Git
-    class ReceivePack < Resource
+    class ReceivePack < Lattice::Resource
       allow :get, :head, :post, :options
 
       accept_content_type  'application/x-git-receive-pack-request' => :accept_pack
@@ -25,29 +24,14 @@ module Cryptosphere
       end
 
       def accept_pack
-        # TODO: streaming support!
-        remaining = request.body.to_s
+        pl_reader = PktLineReader.new(request.body)
+        header = pl_reader.read
+        raise ProtocolError, "no flush-pkt in header" unless pl_reader.read.nil?
 
-        # TODO: WTF encoding??? :(
-        remaining.force_encoding('ASCII-8BIT')
+        puts "Header: #{header.inspect}"
 
-        if result = PktLine.parse(remaining)
-          data, remaining = result
-        else
-          warn "accept_pack couldn't parse pkt-line!"
-          return false
-        end
-
-        #p data
-
-        flush, remaining = PktLine.parse(remaining)
-        if !flush.nil? || remaining.nil?
-          warn "accept_pack coldn't parse flush packet"
-          return false
-        end
-
-        #p remaining
-        true
+        pk_reader = PackReader.new(request.body)
+        p pk_reader.next_object
       end
     end
   end
