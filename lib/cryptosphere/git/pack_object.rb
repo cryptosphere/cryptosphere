@@ -1,3 +1,5 @@
+require 'zlib'
+
 module Cryptosphere
   module Git
     # Pack objects represent data within Git. They are described in Git's
@@ -19,8 +21,10 @@ module Cryptosphere
         @reader = reader
         @type   = type
         @length = length
+        @body   = nil
+        @closed = false
 
-        @body = nil
+        @inflater = Zlib::Inflate.new
       end
 
       # Read data from a PackObject
@@ -29,7 +33,14 @@ module Cryptosphere
       #
       # @return [String] uncompressed data from this object
       def readpartial(length = nil)
-        @reader.readpartial(length)
+        raise StateError, "already closed" if @closed
+
+        if chunk = @reader.readpartial(length)
+          @inflater.inflate(chunk)
+        else
+          @closed = true
+          @inflater.finish
+        end
       end
 
       # Read the entirety of a PackObject as a String
@@ -46,7 +57,7 @@ module Cryptosphere
             remaining -= chunk.length
             body << chunk
           end
-          raise "body was an unexpected length!" unless body.length == @length
+          raise ProtocolError, "body was an unexpected length!" unless body.length == @length
           body
         end
       end

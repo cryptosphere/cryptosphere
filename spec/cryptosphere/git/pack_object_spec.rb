@@ -8,10 +8,16 @@ describe Cryptosphere::Git::PackObject do
   it "parses correctly" do
     subject.should be_a described_class
     subject.type.should   eq 1
-    subject.length.should eq 24
+    subject.length.should eq 189
   end
 
   it "reads its contents" do
-    subject.body.should eq "\x9D\vx\x9C\x9D\xCCM\n\xC20\x10@\xE1}N1\x17\xB0L\x9A\xBF\x06\xA4\xE8".force_encoding("ASCII-8BIT")
+    subject.body.should eq <<COMMIT
+tree 70bc659026c15dadd5b89f410c6e9da9faa74086
+author Tony Arcieri <tony.arcieri@gmail.com> 1373234915 -0700
+committer Tony Arcieri <tony.arcieri@gmail.com> 1373234915 -0700
+
+Initial commit
+COMMIT
   end
 end

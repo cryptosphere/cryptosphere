@@ -12,7 +12,7 @@ module Cryptosphere
 
       # Sanity limit on object header size. This provides 60-bits of length,
       # or 1 exabyte of data. It is considered sufficient for today's purposes
-      HEADER_SANITY_LIMIT = 9
+      SIZE_PREFIX_LIMIT = 9
 
       # Return a pack reader that will parse successive objects in a purely
       # streaming manner, allowing packs to be streamed off the network.
@@ -43,41 +43,31 @@ module Cryptosphere
           raise StateError, "not ready to read a new object"
         end
 
-        begin
-          fill_buffer
-        rescue EOFError
-          raise FormatError, "couldn't parse object header" 
+        fill_buffer(1)
+        size_prefix_bytes = 1
+
+        byte  = @buffer.bytes[0].ord
+        size  = byte & 0xf
+        type  = (byte >> 4) & 7
+        shift = 4
+
+        while byte & 0x80 != 0
+          raise FormatError, "object header too long" if size_prefix_bytes >= SIZE_PREFIX_LIMIT
+
+          size_prefix_bytes += 1
+          fill_buffer(size_prefix_bytes)
+          byte = @buffer.bytes[size_prefix_bytes - 1].ord
+          size |= ((byte & 0x7f) << shift)
+          shift += 7
         end
 
-        byte = @buffer[0].ord
-
-        more   = byte >> 7 & 0x1
-        type   = byte >> 4 & 0x7
-        length = byte & 0xf
-
-        consumed = 1
-
-        while more == 1
-          raise FormatError, "object header too long" if consumed >= HEADER_SANITY_LIMIT
-
-          if consumed >= @buffer.length
-            begin
-              fill_buffer
-            rescue EOFError
-              raise FormatError, "couldn't parse object header" 
-            end
-          end
-
-          byte   = @buffer[consumed].ord
-          more   = byte >> 7 & 0x1
-          length += byte & 0x7f
-
-          consumed += 1
-        end
+        # Discard the length prefix
+        @buffer.slice!(0, size_prefix_bytes)
 
         @state = :object_body
-        @object_remaining = length
-        PackObject.new(self, type, length)
+        @object_remaining = size
+
+        PackObject.new(self, type, size)
       end
 
       # Read raw data from a pack object if we're in the correct state
@@ -86,41 +76,44 @@ module Cryptosphere
       #
       # @return [Cryptosphere::Git::PackObject] streamable pack object
       def readpartial(length = nil)
-        puts "reading object body"
         raise StateError, "not reading object body" if @state != :object_body
 
         length ||= @object_remaining
 
-        result = if @buffer && !@buffer.empty?
-                   if length < @buffer.length
-                     @object_remaining -= length
-                     @buffer.slice!(0, length)
-                   else
-                     buffer = @buffer
-                     @buffer = ""
-                     @object_remaining -= buffer.length
-                     buffer
-                   end
-                 else
-                   buffer = @input.readpartial(length)
-                   @object_remaining -= buffer.length
-                   buffer
-                 end
+        if @buffer && !@buffer.empty?
+          if length < @buffer.length
+            @object_remaining -= length
+            buffer = @buffer.slice!(0, length)
+          else
+            buffer = @buffer
+            @buffer = ""
+            @object_remaining -= buffer.length
+          end
+        else
+          buffer = @input.readpartial(length)
+          @object_remaining -= buffer.length
+        end
 
         @state = :object_header if @object_remaining == 0
-        result
+        buffer
       end
 
-    private
-
-      # Add some data to the buffer from the input
+      # Ensure the buffer contains at least the given amount of input
       #
+      # @param [Fixnum] size of buffer when finished
       # @return [String] newly filled buffer
-      def fill_buffer
-        chunk = @input.readpartial
-        raise EOFError, "end of file encountered" unless chunk && chunk.length > 0
-        @buffer << chunk
+      def fill_buffer(size = nil)
+        return if size.nil? && !buffer.empty?
+        to_read = size - @buffer.size
+        return if to_read < 1
+
+        begin
+          chunk = @input.readpartial
+          raise EOFError, "end of file encountered" unless chunk && chunk.length > 0
+          @buffer << chunk
+        end until size && @buffer.size >= size
       end
+      private :fill_buffer
     end
   end
 end

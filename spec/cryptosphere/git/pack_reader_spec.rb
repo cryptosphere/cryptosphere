@@ -10,7 +10,7 @@ describe Cryptosphere::Git::PackReader do
     obj = subject.next_object
     obj.should be_a Cryptosphere::Git::PackObject
     obj.type.should   eq 1
-    obj.length.should eq 24
+    obj.length.should eq 189
   end
 
   it "raises FormatError if fed garbage" do

@@ -15,9 +15,9 @@ GIT
 
 GIT
   remote: git://github.com/celluloid/lattice.git
-  revision: a2fc14a2ea7b810ffcf5339e62aebf6203f19547
+  revision: 812bede90ef18af22572cb1ea43c7a00890308a0
   specs:
-    lattice (0.0.1)
+    lattice (0.1.0)
       activesupport (~> 4.0.0)
       celluloid (>= 0.15.1)
       reel (>= 0.4.0)

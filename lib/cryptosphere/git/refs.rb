@@ -30,6 +30,8 @@ module Cryptosphere
         response << [
           "000000880000000000000000000000000000000000000000",
           "capabilities^{}\0",
+
+          # TODO: We don't really have any of these capabilities yet ;(
           "report-status",
           "delete-refs",
           "side-band-64k",
