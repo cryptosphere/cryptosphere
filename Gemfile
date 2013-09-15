@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 gem 'webmachine', github: 'seancribbs/webmachine-ruby'
-gem 'rbnacl',     github: 'cryptosphere/rbnacl'
+gem 'rbnacl',     github: 'cryptosphere/rbnacl', branch: 'add-primitive-names'
 
 gem 'celluloid',    github: 'celluloid/celluloid'
 gem 'celluloid-io', github: 'celluloid/celluloid-io'

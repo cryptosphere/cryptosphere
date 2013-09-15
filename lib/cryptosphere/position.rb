@@ -37,7 +37,7 @@ module Cryptosphere
       verify_key = RbNaCl::VerifyKey.new(@public_key)
 
       # TODO: raise a better exception here if the position fails to verify
-      verify_key.verify!(message, signature)
+      verify_key.verify!(signature, message)
 
       timestamp, ciphertext = message.unpack("QA*")
       raise InvalidTimestampError, "timestamp is in the future" if timestamp > Time.now.utc.to_i
