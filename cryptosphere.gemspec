@@ -14,6 +14,7 @@ Gem::Specification.new do |gem|
   gem.name          = "cryptosphere"
   gem.require_paths = ["lib"]
   gem.version       = Cryptosphere::VERSION
+  gem.licenses      = ['MIT']
 
   gem.add_runtime_dependency "celluloid"
   gem.add_runtime_dependency "lattice"
