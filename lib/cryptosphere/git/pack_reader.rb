@@ -61,6 +61,11 @@ module Cryptosphere
 
           length_prefix_bytes += 1
           fill_buffer(length_prefix_bytes)
+
+          # FIXME: this is extremely inefficient
+          # Alternatively this could slice off the first byte of the length
+          # prefix and interpret it a byte-at-a-time, which would be more
+          # efficient given Ruby's string APIs
           byte = @buffer.bytes.to_a[length_prefix_bytes - 1].ord
           length |= ((byte & 0x7f) << shift)
           shift += 7
