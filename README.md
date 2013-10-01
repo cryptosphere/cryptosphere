@@ -152,9 +152,9 @@ the NSA falls into a category you never want to deal with: state-level
 adversaries with vast resources, expertise, and manpower.
 
 It is the opinion of the creators of this software that if the NSA wants to
-compromise this software (or *any* software-only cryptosystem) will be able to,
-both by finding flaws in this software and exploiting endpoint vulnerabilities
-(e.g. unpatched OS vulnerabilities/zero days).
+compromise this software (or *any* software-only cryptosystem) they will be able
+to, both by finding flaws in this software and exploiting endpoint
+vulnerabilities (e.g. unpatched OS vulnerabilities/zero days).
 
 We do not claim to be NSA-proof because we do not think it's a responsible claim
 for software of this nature to make.
