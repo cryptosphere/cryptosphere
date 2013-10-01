@@ -164,7 +164,10 @@ That said, we are still trying to build the best cryptosystem we can.
 ### Is it full of NSA backdoors?
 
 Some research into the author(s) of this project should hopefully reveal we
-aren't fans of the NSA.
+aren't fans of the NSA. Or we're the best NSA sleeper agents you've ever seen.
+At the very least, we can claim that there are no known NSA backdoors in this
+software, and it's up to you to decide if you believe us. We also claim that
+we've gone out of our way to even avoid the potential of NSA backdoors.
 
 We have, as much as possible, attempted to choose cryptographic primitives that
 are beyond reproach when it comes to the possibility of NSA influence:
