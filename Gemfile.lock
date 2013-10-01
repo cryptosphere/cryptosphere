@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/celluloid/celluloid-io.git
-  revision: d86019f1fff0e7d8a86c080f8120a22cb23d8331
+  revision: fdd66442f65715e14e27910a01ce0d7ef971915d
   specs:
     celluloid-io (0.16.0.pre)
       celluloid (>= 0.15.0)
@@ -8,24 +8,26 @@ GIT
 
 GIT
   remote: git://github.com/celluloid/celluloid.git
-  revision: 5963b674a00bdc9da1ba0bbdc4ae582f36860d01
+  revision: 11fe1990fd6ebc723a21b2fef5bc7a540b83e3f0
   specs:
     celluloid (0.16.0.pre)
       timers (~> 1.1.0)
 
 GIT
   remote: git://github.com/celluloid/lattice.git
-  revision: 11e6dac206f44a2348cdd51c1a3a9f00a4d466e1
+  revision: 08d2272e88a8fd4c3755bab0fc7e40ebfb7983e8
   specs:
     lattice (0.1.0)
       activesupport (~> 4.0.0)
       celluloid (>= 0.15.1)
+      colorize (>= 0.5.0)
       reel (>= 0.4.0)
+      thor (>= 0.18.0)
       webmachine (~> 1.2.0)
 
 GIT
   remote: git://github.com/celluloid/reel.git
-  revision: de74147f025673ef336950824b61e8d71e7fb043
+  revision: 18c9d41f458ef77d1cd61b8fd578b47ed06e2306
   specs:
     reel (0.5.0.pre)
       celluloid (>= 0.15.1)
@@ -36,7 +38,7 @@ GIT
 
 GIT
   remote: git://github.com/cryptosphere/rbnacl.git
-  revision: 26f2e20cc59886427058ba096dc743f51f0112c8
+  revision: a38119040231cb3a8b627c9696ae09056dc5bf05
   branch: add-primitive-names
   specs:
     rbnacl (1.1.0)
@@ -44,16 +46,16 @@ GIT
 
 GIT
   remote: git://github.com/seancribbs/webmachine-ruby.git
-  revision: 4c09a6d7420e834980dfab8d00b73eccd2f0023d
+  revision: b31e8227d90da0900bfd3dcdfa787cb2043098a8
   specs:
-    webmachine (1.2.0)
+    webmachine (1.2.1)
       as-notifications (~> 1.0)
       i18n (>= 0.4.0)
       multi_json
 
 GIT
   remote: git://github.com/tarcieri/http.git
-  revision: 2f547a793c3356725b41e26b3b6542ec119ab714
+  revision: fd94edde369e07ab1e2836fe1cbd8aaf94874618
   specs:
     http (0.6.0.pre)
       http_parser.rb
@@ -82,7 +84,8 @@ GEM
     base32 (0.2.0)
     benchmark-ips (1.2.0)
     coderay (1.0.9)
-    coveralls (0.6.9)
+    colorize (0.6.0)
+    coveralls (0.7.0)
       multi_json (~> 1.3)
       rest-client
       simplecov (>= 0.7)
@@ -91,13 +94,13 @@ GEM
     diff-lcs (1.2.4)
     ffi (1.9.0)
     formatador (0.2.4)
-    guard (1.8.2)
+    guard (1.8.3)
       formatador (>= 0.2.4)
-      listen (>= 1.0.0)
+      listen (~> 1.3)
       lumberjack (>= 1.0.2)
       pry (>= 0.9.10)
       thor (>= 0.14.6)
-    guard-rspec (3.0.3)
+    guard-rspec (3.1.0)
       guard (>= 1.8)
       rspec (~> 2.13)
     http_parser.rb (0.6.0.beta.2)
@@ -129,7 +132,7 @@ GEM
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
     rspec-core (2.14.5)
-    rspec-expectations (2.14.2)
+    rspec-expectations (2.14.3)
       diff-lcs (>= 1.1.3, < 2.0)
     rspec-mocks (2.14.3)
     simplecov (0.7.1)
@@ -143,7 +146,7 @@ GEM
     thread_safe (0.1.3)
       atomic
     timers (1.1.0)
-    tins (0.9.0)
+    tins (0.11.0)
     tzinfo (0.3.37)
     webmachine-test (0.2.1)
       webmachine
