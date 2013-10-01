@@ -141,6 +141,26 @@ The Cryptosphere uses a portable repackaging of NaCl named
 [nacl]: http://nacl.cr.yp.to/
 [libsodium]: https://github.com/jedisct1/libsodium
 
+### Is it NSA-proof?
+
+tl;dr: **NO**.
+
+Time for some RealTalk™...
+
+In the pantheon of potential adversaries you can have in a cryptographic system,
+the NSA falls into a category you never want to deal with: state-level
+adversaries with vast resources, expertise, and manpower.
+
+It is the opinion of the creators of this software that if the NSA wants to
+compromise this software (or *any* software-only cryptosystem) will be able to,
+both by finding flaws in this software and exploiting endpoint vulnerabilities
+(e.g. unpatched OS vulnerabilities/zero days).
+
+We do not claim to be NSA-proof because we do not think it's a responsible claim
+for software of this nature to make.
+
+That said, we are still trying to build the best cryptosystem we can.
+
 ### Is it full of NSA backdoors?
 
 Some research into the author(s) of this project should hopefully reveal we
