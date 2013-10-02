@@ -16,8 +16,8 @@ module Cryptosphere
     app.routes do
       # Git-related routes
       # TODO: factor these elsewhere
-      add ['repos', :repo_id, 'info', 'refs'],     Git::Refs
-      add ['repos', :repo_id, 'git-receive-pack'], Git::ReceivePack
+      add ['repos', :repo_id, 'info', 'refs'],     Git::Resources::Refs
+      add ['repos', :repo_id, 'git-receive-pack'], Git::Resources::ReceivePack
 
       # Base web application routes
       add ['assets', '*'], Resources::Asset

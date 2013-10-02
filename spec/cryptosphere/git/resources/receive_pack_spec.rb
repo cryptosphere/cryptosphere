@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'cryptosphere/git'
 require 'stringio'
 
-describe Cryptosphere::Git::ReceivePack do
+describe Cryptosphere::Git::Resources::ReceivePack do
   include Webmachine::Test
 
   let(:app) { Cryptosphere::App }

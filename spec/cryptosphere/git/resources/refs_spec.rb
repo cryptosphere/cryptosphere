@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'cryptosphere/git'
 
-describe Cryptosphere::Git::Refs do
+describe Cryptosphere::Git::Resources::Refs do
   include Webmachine::Test
 
   let(:app) { Cryptosphere::App }
