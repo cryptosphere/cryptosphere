@@ -9,29 +9,37 @@ module Cryptosphere
     #     Documentation/technical/pack-format.txt
     #
     class PackObject
-      TYPES = %w(commit tree blob tag).unshift(nil)
+      TYPES = [nil, :commit, :tree, :blob, :tag]
 
-      attr_reader :type, :length
+      attr_reader :type_id, :length
 
       # Create a new streamable pack object
       #
       # @param [PackReader] reader object to get data from
-      # @param [Fixnum] type of git pack object
+      # @param [Fixnum] type_id of git pack object
       # @param [Fixnum] length of pack object
       #
       # @return [PackObject] a new PackObject ready to stream
-      def initialize(reader, type, length)
-        @reader = reader
-        @type   = type
-        @length = length
-        @body   = nil
-        @closed = false
+      def initialize(reader, type_id, length)
+        @reader  = reader
+        @type_id = type_id
+        @length  = length
+        @body    = nil
+        @closed  = false
 
         @inflater  = Zlib::Inflate.new
         @sha1      = Digest::SHA1.new
         @hexdigest = nil
 
-        @sha1.update("#{TYPES[type]} #{length}\0")
+        header = "#{type} #{length}\0"
+        @sha1.update(header)
+      end
+
+      # Return the type of the PackObject as a symbol
+      #
+      # @return [Symbol] a symbol identifying the type of this object
+      def type
+        TYPES[@type_id]
       end
 
       # Read data from a PackObject

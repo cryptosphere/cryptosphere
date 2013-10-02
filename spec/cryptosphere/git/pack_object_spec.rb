@@ -18,7 +18,7 @@ COMMIT
 
   it "parses correctly" do
     expect(subject).to be_a described_class
-    expect(subject.type).to eq 1
+    expect(subject.type).to eq :commit
     expect(subject.length).to eq 189
     expect(subject.body.length).to eq subject.length
     expect(subject.sha1_hexdigest).to eq "513d7cc8d1af637ed410243494041d007dbae0e8"

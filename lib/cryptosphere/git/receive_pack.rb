@@ -35,7 +35,7 @@ module Cryptosphere
 
         PackReader.new(request.body).each do |pack_object|
           body = pack_object.body
-          debug "*** Got a type-#{pack_object.type} object (length #{pack_object.length} [#{pack_object.length}])\n#{body}"
+          debug "*** Object #{pack_object.id[0,8]} [#{pack_object.type}] (length: #{pack_object.length})\n#{body}"
         end
       end
     end
