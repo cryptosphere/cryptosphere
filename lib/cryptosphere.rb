@@ -43,11 +43,6 @@ module Cryptosphere
   # Implausible timestamps (i.e. ones from the future)
   class InvalidTimestampError < StandardError; end
 
-  # Secure random data source
-  def self.random_bytes(size)
-    Crypto::Random.random_bytes(size)
-  end
-
   def self.logger
     Celluloid.logger
   end
