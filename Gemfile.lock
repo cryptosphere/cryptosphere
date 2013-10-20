@@ -38,8 +38,7 @@ GIT
 
 GIT
   remote: git://github.com/cryptosphere/rbnacl.git
-  revision: a38119040231cb3a8b627c9696ae09056dc5bf05
-  branch: add-primitive-names
+  revision: 8965b4a4975b9ead5f5a094963093d1e2a21dbb3
   specs:
     rbnacl (1.1.0)
       ffi
