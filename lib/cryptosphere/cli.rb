@@ -1,4 +1,5 @@
 require 'thor'
+require 'cryptosphere'
 
 module Cryptosphere
   class CLI < Thor

@@ -11,8 +11,6 @@ require 'cryptosphere/position'
 require 'cryptosphere/heads/read_head'
 require 'cryptosphere/heads/write_head'
 
-require 'cryptosphere/cli'
-
 module Cryptosphere
   # Size of symmetric keys in bytes (32 bytes, 256-bits)
   SECRET_KEY_BYTES = RbNaCl::SecretBox::KEYBYTES
