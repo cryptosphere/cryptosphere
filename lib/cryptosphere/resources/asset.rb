@@ -1,8 +1,8 @@
 module Cryptosphere
   module Resources
     class Asset < Lattice::Resource
-      ASSET_ROOT = File.expand_path("../../assets", __FILE__)
-      FILE_LIST  = Dir[File.join(ASSET_ROOT, "**", "*")].map { |f| f.sub(/^#{ASSET_ROOT}\//, '') }
+      ROOT_DIR  = File.expand_path("../../../../webui", __FILE__)
+      FILE_LIST = Dir[File.join(ROOT_DIR, "**", "*")].map { |f| f.sub(/^#{ROOT_DIR}\//, '') }
 
       def resource_exists?
         FILE_LIST.include? asset_path
@@ -27,7 +27,7 @@ module Cryptosphere
       end
 
       def produce_file
-        Pathname.new(ASSET_ROOT).join(asset_path).read
+        Pathname.new(ROOT_DIR).join(asset_path).read
       end
 
       def asset_path
