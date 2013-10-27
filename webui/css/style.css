@@ -18,13 +18,16 @@ body {
 
 #main {
   overflow: auto;
-  padding-bottom: 50px;
 }
 
 #logo {
   font-family: Futura, "Trebuchet MS", Arial, sans-serif;
-  font-size: 40px;
+  font-size: 30px;
   color: white;
+}
+
+.navbar .brand {
+  padding-left: 10px;
 }
 
 .navbar-inner {
