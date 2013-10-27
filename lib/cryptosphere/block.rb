@@ -16,10 +16,6 @@ module Cryptosphere
   #
   # For more specifics on the encryption, please see Blake2bXSalsa20Poly1305
   class Block
-    # Hash key to use when calculating the ID of a block
-    # This matches the URI scheme for blocks
-    HASH_KEY = "crypt.block"
-
     # Hard limit on the size of a block
     SIZE_LIMIT = 1_048_576
 
@@ -30,7 +26,7 @@ module Cryptosphere
     def self.encrypt(plaintext, convergence_secret = nil)
       key        = DEFAULT_PRIMITIVE.derive_key(plaintext, convergence_secret)
       ciphertext = DEFAULT_PRIMITIVE.encrypt(key, plaintext)
-      id         = DEFAULT_PRIMITIVE.derive_key(ciphertext, HASH_KEY)
+      id         = DEFAULT_PRIMITIVE.derive_key(ciphertext)
 
       # We can safely skip ID verification because we just computed
       # the ID of the hash ourselves, and we trust ourself, right?
@@ -52,7 +48,7 @@ module Cryptosphere
       # We can't rely on the MAC alone because anyone with the key can produce
       # ciphertexts under the same key which are not the ciphertext we're looking for
       unless options.fetch(:skip_id_check, false)
-        expected_id = DEFAULT_PRIMITIVE.derive_key(ciphertext, HASH_KEY)
+        expected_id = DEFAULT_PRIMITIVE.derive_key(ciphertext)
         raise ForgeryError, "forged block!" unless RbNaCl::Util.verify32(@id, expected_id)
       end
 

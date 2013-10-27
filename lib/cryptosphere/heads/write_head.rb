@@ -17,7 +17,7 @@ module Cryptosphere
       # @param seed [String] (optional) seed value to generate WriteHead from
       # @return [Cryptosphere::WriteHead] newly generated WriteHead object
       def self.generate(seed = Cryptosphere.random_bytes(64))
-        hash = RbNaCl::Hash.blake2b(seed, key: URI_SCHEME)
+        hash = RbNaCl::Hash.blake2b(seed)
         new("#{URI_SCHEME}:#{Encoding.encode(hash) + '0'}")
       end
 

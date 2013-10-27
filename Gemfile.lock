@@ -38,14 +38,14 @@ GIT
 
 GIT
   remote: git://github.com/cryptosphere/rbnacl.git
-  revision: 6ad700e8cfb3f577e82d9470edc1ea83e6c4d150
+  revision: 5e099f4ac865747a8ae37f623c3f2e66c9365cd3
   specs:
     rbnacl (2.0.0.pre)
       ffi
 
 GIT
   remote: git://github.com/seancribbs/webmachine-ruby.git
-  revision: 1f11efdd8bc9f899259af0fbac749882d290d525
+  revision: 039da08580abcde0dac6306fc7ee2ad7fdffa052
   specs:
     webmachine (1.2.1)
       as-notifications (~> 1.0)

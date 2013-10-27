@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Cryptosphere::Block do
-  let(:block_id)  { "xnl6nmgbbhzhuls7urd2d2twyfc32nqwn77hcsly47kg2rew3vca" }
+  let(:block_id)  { "bjktwphz5gnw6k6phjbuzugry7qnc5tgv6wlaqbkvjrwr3bit27a" }
   let(:plaintext) { "Stellar Wind is watching you" }
 
   it "encrypts and decrypts blocks" do

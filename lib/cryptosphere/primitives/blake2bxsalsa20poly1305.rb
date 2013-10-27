@@ -44,13 +44,13 @@ module Cryptosphere
       # plus an optional convergence secret
       #
       # @param plaintext [String] plaintext from which a key should be derived
-      # @param convergence_secret [String] optional secret value
+      # @param salt [String] optional salt value (typically a convergence secret)
       # @return [String] derived encryption key
-      def derive_key(plaintext, convergence_secret)
+      def derive_key(plaintext, salt = nil)
         RbNaCl::Hash.blake2b(
           plaintext,
           digest_size: RbNaCl::SecretBox.key_bytes,
-          key: convergence_secret
+          key: salt
         )
       end
 
