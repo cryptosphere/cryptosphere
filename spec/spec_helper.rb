@@ -1,4 +1,5 @@
 require 'coveralls'
+require 'json'
 Coveralls.wear!
 
 require 'rubygems'
