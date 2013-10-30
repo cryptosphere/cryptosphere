@@ -47,23 +47,13 @@
       <div id="passsphere" class="sphere">
         <div id="passprompt">PASSWORD:</div>
           <input id="passfield" type="password" autofocus="autofocus"></input>
-          <button class="btn btn-primary" onClick="openSesame();">Unlock</button>
+          <button class="btn btn-primary">Unlock</button>
         </div>
       </div>
     </div>
   </div>
 </body>
 
-<script>
-  function openSesame() {
-    $("#door-l").css("transform", "translateX(-150%)");
-    $("#door-r").css("transform", "translateX(150%)");
-  }
+<script src="/assets/js/password.js"></script>
 
-  $('#passfield').on('keydown', function(e) {
-    if (e.which == 13) {
-      openSesame();
-    }
-  });
-</script>
 </html>

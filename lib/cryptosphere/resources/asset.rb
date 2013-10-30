@@ -1,6 +1,8 @@
+require 'cryptosphere/resource'
+
 module Cryptosphere
   module Resources
-    class Asset < Lattice::Resource
+    class Asset < Cryptosphere::Resource
       ROOT_DIR  = File.expand_path("../../../../webui", __FILE__)
       FILE_LIST = Dir[File.join(ROOT_DIR, "**", "*")].map { |f| f.sub(/^#{ROOT_DIR}\//, '') }
 
