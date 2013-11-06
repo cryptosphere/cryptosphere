@@ -88,7 +88,7 @@ Use Cases
 
 The Cryptosphere provides an encrypted storage system where only users with
 the capability tokens for respective content are able to access it. Unlike
-many other peer to systems, there is no global search system because all
+many other peer-to-peer systems, there is no global search feature because all
 content in the system is encrypted and therefore unsearchable.
 
 This makes the Cryptosphere quite a bit different from many other P2P systems
