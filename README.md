@@ -161,49 +161,6 @@ for software of this nature to make.
 
 That said, we are still trying to build the best cryptosystem we can.
 
-### Is it full of NSA backdoors?
-
-Some research into the author(s) of this project should hopefully reveal we
-aren't fans of the NSA. Or we're the best NSA sleeper agents you've ever seen.
-At the very least, we can claim that there are no known NSA backdoors in this
-software, and it's up to you to decide if you believe us. We also claim that
-we've gone out of our way to even avoid the potential of NSA backdoors.
-
-We have, as much as possible, attempted to choose cryptographic primitives that
-are beyond reproach when it comes to the possibility of NSA influence:
-
-![No NIST](http://i.imgur.com/HSxeAmp.png)
-
-The design of RbNaCl's primitives is completely free from NIST (and by
-association, NSA) influence, with the following minor exceptions:
-
-* The Poly1305 MAC, used for authenticating integrity of ciphertexts, uses AES
-  as a replaceable component
-* The Ed25519 digital signature algorithm uses SHA-512 for both key derivation
-  and computing message digests
-
-Otherwise, all of the algorithms in NaCl which are used by the Cryptosphere
-were designed by Dan Bernstein and his collaborators, with the exception of
-the Blake2 hash function, which was designed by Jean-Philippe Aumasson.
-
-The design choices in NaCl, particularly in regard to the Curve25519
-Diffie-Hellman function, emphasize security (whereas [NIST curves emphasize
-"performance" at the cost of security][nist-security-dangers]), and "magic
-constants" in NaCl are picked by theorems designed to maximize security.
-The same cannot be said of NIST curves, where the specific origins of certain
-constants are not described by the standards and may be subject to malicious
-influence by the NSA.
-
-It is the opinion of this library's authors that Dan Bernstein is unlikely to be
-subject to NSA influence (although we have no way of actually knowing this).
-
-Dan Bernstein's designs have been well-scrutinized both as part of the [ESTREAM
-Project](https://en.wikipedia.org/wiki/ESTREAM) and the cryptographic community
-as a whole. And despite the emphasis on higher security, NaCl's primitives are
-faster across-the-board than most implementations of the NIST standards.
-
-[nist-security-dangers]: http://www.hyperelliptic.org/tanja/vortraege/20130531.pdf
-
 ### Have any fancy pants cryptographers taken a look at the design?
 
 Matt Green glanced over an initial draft of the data model. He thought that
