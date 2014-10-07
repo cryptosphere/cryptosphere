@@ -225,7 +225,3 @@ LICENSE.txt for further details.
 ---
 
 > Dedicated to the memory of Iain Banks
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/cryptosphere/cryptosphere/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
